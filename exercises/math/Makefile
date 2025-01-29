@@ -5,8 +5,11 @@ CXX = g++
 
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler warnings to catch potential issues
-# -std=c++11: Use the C++11 standard for compilation
-CXXFLAGS = -Wall -std=c++11
+# -std=c++23: Use the C++23 standard for compilation
+CXXFLAGS = -Wall -std=c++23
+
+# Linker flags: Libraries to link against (e.g., -lm for math functions)
+LDLIBS = -lm
 
 # Target executable: The name of the final executable file to be created
 TARGET = main
@@ -29,7 +32,7 @@ all: $(TARGET)
 # $(CXXFLAGS): Compiler flags (e.g., -Wall, -std=c++11)
 # -o $(TARGET): Specifies the output file name for the executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDLIBS)
 
 # Rule to compile each .cpp file into an object file
 # %.o: A pattern rule that matches any .o file
