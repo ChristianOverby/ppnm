@@ -1,0 +1,25 @@
+largest signed int number: 2147483647
+largest signed int number + 1:  -2147483648  This is also the smallest number due to the overflow wrap
+largest signed int number + 10: -2147483639
++1 larger or smaller? larger
+largest unsigned int number: 4294967295
+largest unsigned int number + 1:  0
+largest unsigned int number + 10: 9
++1 larger or smaller? smaller
+Machine float epsilon:  7.629394360719743417575955390930175781e-08
+Machine double epsilon: 1.421085471520200401324532480944192703e-16
+(float) a = tiny + tiny + 1      =1.00000011920928955078125
+(double) a = tiny2 + tiny2 + 1   =1.000000000000000222044604925031308085
+(float) a_r = 1 + tiny + tiny    =1
+(double) a_r = 1 + tiny2 + tiny2 =1
+float a == float b:   false
+double a == double b: false
+float a > 1: true
+double a > 1: true
+float b > 1: false
+double b > 1: false
+I cannot explain the expressions with any security, i feel that the "tiny" epsilon should just be rounded to 0
+It seems as though the tiny epsilon can be added together as long as one is in the domain of their size
+d1: 8
+d2: 8
+d1 == d2: true

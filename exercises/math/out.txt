@@ -1,0 +1,28 @@
+Some math function
+The value of pi is: 3.14159
+The square root of 2 is: 1.414213562
+2 raised to the power of 1/5 is: 1.148698355
+e raised to the power of pi is: 23.14069263
+pi raised to the power of e is: 22.45910615
+Gamma(0) = inf
+Gamma(1) = 0.9999999891
+Gamma(2) = 0.9999999891
+Gamma(3) = 1.999999978
+Gamma(4) = 5.999999934
+Gamma(5) = 23.99999974
+Gamma(6) = 119.9999987
+Gamma(7) = 719.9999921
+Gamma(8) = 5039.999945
+Gamma(9) = 40319.99956
+Gamma(10) = 362879.9977
+lnGamma(0) = nan
+lnGamma(1) = -1.093509761e-08
+lnGamma(2) = -1.093509761e-08
+lnGamma(3) = 0.6931471696
+lnGamma(4) = 1.791759458
+lnGamma(5) = 3.178053819
+lnGamma(6) = 4.787491732
+lnGamma(7) = 6.579251201
+lnGamma(8) = 8.52516135
+lnGamma(9) = 10.60460289
+lnGamma(10) = 12.80182747
