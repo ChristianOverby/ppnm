@@ -6,7 +6,8 @@
 
 int main()
 {   
-
+    // change the precision of the output
+    std::cout.precision(10);
     std::cout << "Some math function" << std::endl;
 
     // declare variables
