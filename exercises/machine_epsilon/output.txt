@@ -1,3 +1,4 @@
+0.0296965
 largest signed int number: 2147483647
 largest signed int number + 1:  -2147483648  This is also the smallest number due to the overflow wrap
 largest signed int number + 10: -2147483639
@@ -20,6 +21,9 @@ float b > 1: false
 double b > 1: false
 I cannot explain the expressions with any security, i feel that the "tiny" epsilon should just be rounded to 0
 It seems as though the tiny epsilon can be added together as long as one is in the domain of their size
-d1: 8
-d2: 8
-d1 == d2: true
+d1: 8.080799999999998206590134941507130861
+d2: 8.080799999999999982946974341757595539
+d1 == d2: false
+timed sdfuncs::absoluteValue value of 17: 0.0287542000000000005921485524140734924 µs
+timed std::abs value of 17:               0.03105978999999999684566986957179324236 µs
+timed std::fabs value of 17:              0.02891282000000000226846985640349885216 µs

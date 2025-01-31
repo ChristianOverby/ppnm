@@ -1,8 +1,14 @@
 #include<cmath>
-#include<iostream>
+#include<chrono>
 #include<thread>
 #include<fstream>
+#include"includes/functions.hpp"
 
+bool approx(double a, double b, double acc, double eps) {
+        if(std::abs(a-b) <= acc) {return true;}
+        if(std::abs(a-b)/std::max(a,b) <= std::abs(eps)) {return true;}
+        return false;
+    }
 
 int main(){
     std::ofstream file("output.txt");
@@ -47,9 +53,12 @@ int main(){
     double b_d = 1 + tiny2 + tiny2; 
 
     // 1.0 eight times
-    double d1 = 1.0 + 1.0 + 1.0 + 1.0 + 1.0 + 1.0 + 1.0 + 1.0;
-    double d2 = 1.0*8.0;
+    double d1 = 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101;
+    double d2 = 8*1.0101;
 
+    double q = sdfuncs::timeit(sdfuncs::absoluteValue, 17);
+
+    file << q << "\n";
     // write to file
     file << "largest signed int number: " << x << "\n";
     file << "largest signed int number + 1:  " << x + 1 << "  This is also the smallest number due to the overflow wrap" << "\n";
@@ -80,5 +89,10 @@ int main(){
     file << "d1: " << d1 << "\n";
     file << "d2: " << d2 << "\n";
     file << "d1 == d2: " << (d1 == d2 ? "true" : "false") << "\n";
+    // Trying some simple time-it loops
+    file << "timed sdfuncs::absoluteValue value of 17: " << sdfuncs::timeit(sdfuncs::absoluteValue, -17.4) << " \u00B5s" << "\n";
+    file << "timed std::abs value of 17:               " << sdfuncs::timeit([](double x) { return std::abs(x); }, -17.4) << " \u00B5s" << "\n";
+    file << "timed std::fabs value of 17:              " << sdfuncs::timeit([](double x) { return std::fabs(x); }, -17.4) << " \u00B5s" << "\n";
     file.close();
+
 }

@@ -19,7 +19,7 @@ LDLIBS = -lm
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp
+SRCS = main.cpp includes/functions.cpp
 
 # Object files: List of object files to be generated from the source files
 # This replaces the .cpp extension with .o for each source file
