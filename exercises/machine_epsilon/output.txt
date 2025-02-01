@@ -1,4 +1,3 @@
-0.0296965
 largest signed int number: 2147483647
 largest signed int number + 1:  -2147483648  This is also the smallest number due to the overflow wrap
 largest signed int number + 10: -2147483639
@@ -24,6 +23,7 @@ It seems as though the tiny epsilon can be added together as long as one is in t
 d1: 8.080799999999998206590134941507130861
 d2: 8.080799999999999982946974341757595539
 d1 == d2: false
-timed sdfuncs::absoluteValue value of 17: 0.0287542000000000005921485524140734924 µs
-timed std::abs value of 17:               0.03105978999999999684566986957179324236 µs
-timed std::fabs value of 17:              0.02891282000000000226846985640349885216 µs
+d1 == d2 using approx_equal: true
+timed sdfuncs::absoluteValue value of -17.4: 0.0146317200000000008364153814000019338 µs
+timed std::abs value of -17.4:               0.01497842000000000096948671313157319673 µs
+timed std::fabs value of -17.4:              0.01541054000000000034908964607893722132 µs

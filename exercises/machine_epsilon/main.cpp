@@ -4,12 +4,6 @@
 #include<fstream>
 #include"includes/functions.hpp"
 
-bool approx(double a, double b, double acc, double eps) {
-        if(std::abs(a-b) <= acc) {return true;}
-        if(std::abs(a-b)/std::max(a,b) <= std::abs(eps)) {return true;}
-        return false;
-    }
-
 int main(){
     std::ofstream file("output.txt");
     // if the file is not open, return 1
@@ -44,6 +38,9 @@ int main(){
     while (1 + t != 1) {
         t /= 2;
     }
+    float f_epsilon = z*2;
+    double d_epsilon = t*2;
+
     // tiny epsilon shenanigans
     float tiny = z;
     double tiny2 = t;
@@ -56,9 +53,6 @@ int main(){
     double d1 = 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101 + 1.0101;
     double d2 = 8*1.0101;
 
-    double q = sdfuncs::timeit(sdfuncs::absoluteValue, 17);
-
-    file << q << "\n";
     // write to file
     file << "largest signed int number: " << x << "\n";
     file << "largest signed int number + 1:  " << x + 1 << "  This is also the smallest number due to the overflow wrap" << "\n";
@@ -70,8 +64,8 @@ int main(){
     file << "+1 larger or smaller? " << (y+1 > y ? "larger" : "smaller") << "\n";
     // more precision is needed to see the difference
     file.precision(37);
-    file << "Machine float epsilon:  " << z*2 << "\n";
-    file << "Machine double epsilon: " << t*2 << "\n";
+    file << "Machine float epsilon:  " << f_epsilon << "\n";
+    file << "Machine double epsilon: " << d_epsilon << "\n";
     file << "(float) a = tiny + tiny + 1      =" << a_f << "\n";
     file << "(double) a = tiny2 + tiny2 + 1   =" << a_d << "\n";
     file << "(float) a_r = 1 + tiny + tiny    =" << b_f << "\n";
@@ -89,10 +83,16 @@ int main(){
     file << "d1: " << d1 << "\n";
     file << "d2: " << d2 << "\n";
     file << "d1 == d2: " << (d1 == d2 ? "true" : "false") << "\n";
+    // print d1 & d2 and check for d1 == d2 using approx_equal
+    file << "d1 == d2 using approx_equal: " << (sdfuncs::approx_equal(d1, d2, 1e-9, d_epsilon) ? "true" : "false") << "\n";
+
+
     // Trying some simple time-it loops
-    file << "timed sdfuncs::absoluteValue value of 17: " << sdfuncs::timeit(sdfuncs::absoluteValue, -17.4) << " \u00B5s" << "\n";
-    file << "timed std::abs value of 17:               " << sdfuncs::timeit([](double x) { return std::abs(x); }, -17.4) << " \u00B5s" << "\n";
-    file << "timed std::fabs value of 17:              " << sdfuncs::timeit([](double x) { return std::fabs(x); }, -17.4) << " \u00B5s" << "\n";
+    file << "timed sdfuncs::absoluteValue value of -17.4: " << sdfuncs::timeit(sdfuncs::absoluteValue, -17.4) << " \u00B5s" << "\n";
+    // since std::abs and std::fabs are overloaded, we need to specify the type, this is done by using a lambda function
+    file << "timed std::abs value of -17.4:               " << sdfuncs::timeit([](double x) { return std::abs(x); }, -17.4) << " \u00B5s" << "\n";
+    file << "timed std::fabs value of -17.4:              " << sdfuncs::timeit([](double x) { return std::fabs(x); }, -17.4) << " \u00B5s" << "\n";
+
     file.close();
 
 }
