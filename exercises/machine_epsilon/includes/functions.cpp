@@ -1,5 +1,3 @@
-#include<chrono>
-#include<functional>
 #include"functions.hpp"
 
 namespace sdfuncs {

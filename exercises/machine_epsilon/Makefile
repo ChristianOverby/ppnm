@@ -21,6 +21,9 @@ TARGET = main
 # Source files: List of all source files to be compiled (only main.cpp here)
 SRCS = main.cpp includes/functions.cpp
 
+# Output file: The name of the file where the output will be redirected
+OUTPUT = Output.txt
+
 # Object files: List of object files to be generated from the source files
 # This replaces the .cpp extension with .o for each source file
 # $(patsubst pattern, replacement, text)`: This Make function performs pattern substitution.
@@ -47,6 +50,10 @@ $(TARGET): $(OBJS)
 # -o $@: Specifies the output file name (the .o file)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Redirect the output of the executable to a file
+output : $(TARGET)
+	./$(TARGET) > $(OUTPUT)
 
 # Clean target: Removes all generated files (object files and the executable)
 # rm -f: Forcefully remove files without prompting for confirmation

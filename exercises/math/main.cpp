@@ -25,11 +25,11 @@ int main()
     std::cout << "pi raised to the power of e is: " << pi_power_e << '\n';
 
     // Gamma function with n = 0 to n = 10
-    for (double i = 0; i < 11; i++) {
+    for (double i = 1; i < 11; i++) {
         std::cout << "Gamma(" << i << ") = " << sfuns::fgamma(i) << "\n";
     }
 
-    for (double i = 0; i < 11; i++) {
+    for (double i = 1; i < 11; i++) {
         std::cout << "lnGamma(" << i << ") = " << sfuns::lngamma(i) << "\n";
     }
 
