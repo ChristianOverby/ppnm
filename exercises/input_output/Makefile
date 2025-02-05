@@ -6,6 +6,9 @@
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler warnings to catch potential issues
 # -std=c++23: Use the C++23 standard for compilation
+# -Wextra: Extra errors
+# -ferror-limit=1: tells the compiler to stop after encountering one error
+
 CXXFLAGS += -Wall -std=c++23
 
 # Linker flags: Libraries to link against (e.g., -lm for math functions)
@@ -19,7 +22,7 @@ LDLIBS += -lm
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp includes/vec3.cpp includes/functions.cpp includes/tests.cpp
+SRCS = main.cpp
 
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt

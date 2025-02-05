@@ -15,6 +15,13 @@ namespace udvector {
             vec3() : x(0), y(0), z(0) {};
             vec3(const T& x_set, const T& y_set, const T& z_set) : x(T(x_set)), y(T(y_set)), z(T(z_set)) {};
             
+            // Let the compiler generate these since that would be completely fine for statically allocated memory
+            vec3(const vec3&) = default;        // Copy constructor
+            vec3(vec3&&) = default;             // Move constructor
+            vec3& operator=(const vec3&) = default;  // Copy assignment
+            vec3& operator=(vec3&&) = default;       // Move assignment
+            ~vec3() = default;                  // Destructor
+
             // operators
             // +
             vec3 operator+(const vec3& v) const {return vec3(v.x + x, v.y + y, v.z + z);};

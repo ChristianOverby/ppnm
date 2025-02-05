@@ -6,14 +6,14 @@
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler warnings to catch potential issues
 # -std=c++23: Use the C++23 standard for compilation
-CXXFLAGS = -Wall -std=c++23
+CXXFLAGS += -Wall -std=c++23
 
 # Linker flags: Libraries to link against (e.g., -lm for math functions)
 # -lm → Links libm (Math library)
 # -lpthread → Links libpthread (POSIX Threads)
 # -lstdc++ → Links libstdc++ (C++ Standard Library)
 # -lsqlite3 → Links libsqlite3 (SQLite library)
-LDLIBS = -lm
+LDLIBS += -lm
 
 # Target executable: The name of the final executable file to be created
 TARGET = main
