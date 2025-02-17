@@ -38,17 +38,8 @@ all: $(TARGET) output
 
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
-	@echo Here the the executable is run with --numbers 1,2,3,4 -n 5,6,7,8 -n 9 --numbers 10 > $(OUTPUT)
-	@./$(TARGET) --numbers 1,2,3,4 -n 5,6,7,8 -n 9 -n 10 >> $(OUTPUT)
-	@echo Here the executable is run with gibberish such as --numbers 1,2,Å,4 -n V,6,7,8 -n / -n . Also the stderr messages are appended to the Outputfile. The executable is programmed to stop current operation if encountering unspecified behaviour >> $(OUTPUT)
-	@./$(TARGET) --numbers 1,2,Å,4 -n V,6,7,8 -n / -n .  >> $(OUTPUT) 2>> $(OUTPUT)
-	@echo Creating an inputData.txt file for testing with the following data: >> $(OUTPUT)
-	@echo "13 124 1 94 149 4442\n31 05 91\n3 2 1" > inputData.txt
-	@echo "13 124 1 94 149 4442\n31 05 91\n3 2 1" >> $(OUTPUT)
-	@echo Here the executable is run with the data file inputData.txt from the directory with --input inputData.txt >> $(OUTPUT)
-	@./$(TARGET) --input inputData.txt >> $(OUTPUT)
-	@echo Here the executable is run with the data file inputData.txt from the directory and saved into a specified filename with --input inputData.txt --output outputData.txt \(Obviously nothing is piped to this file\) >> $(OUTPUT)
-	@./$(TARGET) --input inputData.txt --output outputData.txt >> $(OUTPUT)
+	./$(TARGET) > $(OUTPUT)
+
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
 # $(OBJS): The object files needed to create the executable
@@ -68,12 +59,23 @@ $(TARGET): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
+plot.test.svg: test.gpi
+	gnuplot $<
+
+plot.gamma.svg : data.txt Makefile
+	echo ' \
+	  set terminal svg; \
+	  set output "$@"; \
+	  plot "$<" index 0 with lines; \
+	' | tee log.gamma.gpi | gnuplot
+	
+
 # Clean target: Removes all generated files (object files and the executable)
 # rm -f: Forcefully remove files without prompting for confirmation
 # $(OBJS): Removes all object files
 # $(TARGET): Removes the final executable
 clean:
-	rm -f $(OBJS) $(TARGET) Output.txt output.txt outputData.txt inputData.txt
+	rm -f $(OBJS) $(TARGET) output.txt plot.gamma.svg plot.test.svg log.gamma.gpi
 
 # Phony targets: Targets that are not actual files but are used as commands
 # all: The default target to build the executable

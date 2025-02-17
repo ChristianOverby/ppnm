@@ -58,6 +58,8 @@
         "iomanip": "cpp",
         "span": "cpp",
         "sstream": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }
