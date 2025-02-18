@@ -39,6 +39,7 @@ all: $(TARGET) output
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
 	./$(TARGET) > $(OUTPUT)
+	@echo "-1	-0.842700793\n-0.4	-0.428392355\n0 0\n0.4	0.428392355\n1	0.842700793" > erfData.txt
 
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
@@ -59,23 +60,78 @@ $(TARGET): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
-plot.test.svg: test.gpi
-	gnuplot $<
-
-plot.gamma.svg : data.txt Makefile
-	echo ' \
+plot.erf.svg : Output.txt erfData.txt
+		echo " \
 	  set terminal svg; \
-	  set output "$@"; \
-	  plot "$<" index 0 with lines; \
-	' | tee log.gamma.gpi | gnuplot
-	
+	  set output \"$@\"; \
+	  set zeroaxis; \
+	  plot \
+	   \"$<\" index 0 with lines title \"erf(x)\" \
+	   , \"erfData.txt\" with points title \"Tabulated erf(x)\"; \
+	" | tee log.erf.gpi | gnuplot
+
+plot.gamma.svg : Output.txt
+		echo " \
+        set terminal svg; \
+		set zeroaxis lt -1; \
+		set xtics axis; \
+		set ytics axis; \
+        set output \"$@\"; \
+		set key bottom right; \
+		set title 'Gamma function'; \
+		set arrow from 0, graph 0 to 0, graph 1 nohead lw 2 lc rgb 'blue' dashtype 2; \
+		set arrow from -1, graph 0 to -1, graph 1 nohead lw 2 lc rgb 'blue' dashtype 2; \
+		set arrow from -2, graph 0 to -2, graph 1 nohead lw 2 lc rgb 'blue' dashtype 2; \
+		set arrow from -3, graph 0 to -3, graph 1 nohead lw 2 lc rgb 'blue' dashtype 2; \
+		set arrow from -4, graph 0 to -4, graph 1 nohead lw 2 lc rgb 'blue' dashtype 2; \
+        plot [-5:5][-5:5]\
+            \"$<\" index 1 with lines lw 2 lc rgb 'red' title 'Gamma(x)' \
+            , \"$<\" index 3 with points title 'factorial of N'; \
+    " | tee log.gamma.gpi | gnuplot
+
+plot.lngamma.svg : Output.txt
+		echo " \
+        set terminal svg; \
+		set zeroaxis lt -1; \
+		set xtics axis; \
+		set ytics axis; \
+        set output \"$@\"; \
+		set key bottom right; \
+		set title 'Gamma function'; \
+        plot [0:5][-1:5]\
+            \"$<\" index 2 with lines lw 2 lc rgb 'red' title 'Gamma(x)'; \
+    " | tee log.lngamma.gpi | gnuplot
+
+
+# set palette rgb 33,13,10;
+# Custom HSV palette: cyan → blue → magenta → red → yellow → green → cyan
+plot.complexGamma.svg : Output.txt
+	echo "\
+	set terminal svg size 800,600; \
+	set output \"complex_gamma_surface_plot.svg\"; \
+	set xlabel \"Re(z)\"; \
+	set ylabel \"Im(z)\"; \
+	set zlabel \"|Gamma(z)|\"; \
+	set xrange [-5:5]; \
+	set yrange [-5:5]; \
+	set zrange [0:6]; \
+	set cbrange [-pi:pi]; \
+	set pm3d interpolate 0,0; \
+	set pm3d corners2color c1; \
+	set pm3d at s; \
+	set palette model HSV functions (gray + 0.5 - int(gray + 0.5)), 0.8, 0.9; \
+	set view 60, 330; \
+	set xyplane relative 0; \
+	splot \"Output.txt\" using 1:2:3:4 with pm3d notitle; \
+	" | tee log.complexGamma.gpi | gnuplot
 
 # Clean target: Removes all generated files (object files and the executable)
 # rm -f: Forcefully remove files without prompting for confirmation
 # $(OBJS): Removes all object files
 # $(TARGET): Removes the final executable
 clean:
-	rm -f $(OBJS) $(TARGET) output.txt plot.gamma.svg plot.test.svg log.gamma.gpi
+	rm -f $(OBJS) $(TARGET) Output.txt plot.gamma.svg plot.test.svg log.gamma.gpi erfData.txt plot.erf.svg log.erf.gpi test.gpi data.txt \
+	log.gamma.gpi plot.complexGamma.svg gamma_surface_plot.svg log.complexGamma.gpi plot.lngamma.svg log.lngamma.gpi
 
 # Phony targets: Targets that are not actual files but are used as commands
 # all: The default target to build the executable

@@ -22,7 +22,7 @@ LDLIBS += -lm -lstdc++
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp
+SRCS = main.cpp includes/function.cpp
 
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt
@@ -39,7 +39,6 @@ all: $(TARGET) output
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
 	./$(TARGET) > $(OUTPUT)
-	@echo "\nExtra cmath sinh and cosh exercise skipped" >> $(OUTPUT)
 # $(TARGET): The name of the executable (main)
 # $(OBJS): The object files needed to create the executable
 # $(CXX): The compiler to use (g++)

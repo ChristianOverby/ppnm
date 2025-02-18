@@ -1,0 +1,1 @@
+         set terminal svg; 	set zeroaxis lt -1; 	set xtics axis; 	set ytics axis;         set output "plot.lngamma.svg"; 	set key bottom right; 	set title 'Gamma function';         plot [0:5][-1:5]            "Output.txt" index 2 with lines lw 2 lc rgb 'red' title 'Gamma(x)';     
