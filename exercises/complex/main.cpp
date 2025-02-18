@@ -1,6 +1,7 @@
 #include <complex>
 #include <iostream>
 
+// just used std::abs since i didnt want to make my own implementation.
 bool approx(const std::complex<double>& a, const std::complex<double>& b, double eps = 1e-6) {
     return std::abs(a - b) < eps;
 }
