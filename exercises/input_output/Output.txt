@@ -9,7 +9,7 @@ x = 7	sin(7) = 0.656987	cos(7) = 0.753902
 x = 8	sin(8) = 0.989358	cos(8) = -0.1455
 x = 9	sin(9) = 0.412118	cos(9) = -0.91113
 x = 10	sin(10) = -0.544021	cos(10) = -0.839072
-Here the executable is run with gibberish such as --numbers 1,2,Å,4 -n V,6,7,8 -n / -n . Also the stderr messages are appended to the Outputfile. The executable is programmed to stop current operation if encountering unspecified behaviour
+Here the executable is run with gibberish such as --numbers 1,2,Å,4 -n V,6,7,8 -n / -n . Also the stderr messages are appended to the Output.txt file. The executable is programmed to stop current operation if encountering unspecified behaviour
 x = 1	sin(1) = 0.841471	cos(1) = 0.540302
 x = 2	sin(2) = 0.909297	cos(2) = -0.416147
 Error: Expected a number as input at:	Å

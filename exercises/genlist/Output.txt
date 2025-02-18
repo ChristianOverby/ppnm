@@ -1,0 +1,17 @@
+Creating an inputData.txt file for testing with the following data:
+129.24 24.8             4.847
+88.6   33.745 7.78
+30.39  99.811              6.723	
+-1.33   96.3   2.23
+Values in exponential format
+ 1.2924e+02	 2.4800e+01	 4.8470e+00	
+ 8.8600e+01	 3.3745e+01	 7.7800e+00	
+ 3.0390e+01	 9.9811e+01	 6.7230e+00	
+ -1.3300e+00	 9.6300e+01	 2.2300e+00	
+Removing index 1 of the GenList
+Values in exponential format
+ 1.2924e+02	 2.4800e+01	 4.8470e+00	
+ 3.0390e+01	 9.9811e+01	 6.7230e+00	
+ -1.3300e+00	 9.6300e+01	 2.2300e+00	
+
+Extra: implement generic list using a chain of nodes exercise skipped

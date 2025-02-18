@@ -1,0 +1,22 @@
+sqrt(-1) = (0,1)	Expected value = (0,1)
+Approx equal: true
+
+sqrt(i) = (0.707107,0.707107)	Expected value = (0.707107,0.707107)
+Approx equal: true
+
+exp(i) = (0.540302,0.841471)	Expected value = (0.540302,0.841471)
+Approx equal: true
+
+exp(i*pi) = (-1,1.22465e-16)	Expected value = (-1,0)
+Approx equal: true
+
+i^i = (0.20788,0)	Expected value = (0.20788,0)
+Approx equal: true
+
+ln(i) = (0,1.5708)	Expected value = (0,1.5708)
+Approx equal: true
+
+sin(i*pi) = (0,11.5487)	Expected value = (0,11.5487)
+Approx equal: true
+
+Extra cmath sinh and cosh exercise skipped
