@@ -33,8 +33,8 @@ int main()
     // Define the grid in the complex plane.
     double x_min = -5.0, x_max = 5.0;
     double y_min = -5.0, y_max = 5.0;
-    const int nx = 300; // number of grid points in real direction
-    const int ny = 300; // number of grid points in imaginary direction
+    const int nx = 500; // number of grid points in real direction
+    const int ny = 500; // number of grid points in imaginary direction
 
     // Generate grid and compute |Gamma(z)| for each point.
     for (int i = 0; i < nx; i++) {
