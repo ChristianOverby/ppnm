@@ -62,7 +62,7 @@ $(TARGET): $(OBJS)
 
 plot.erf.svg : Output.txt erfData.txt
 		echo " \
-	  set terminal svg; \
+	  set terminal svg background 'white'; \
 	  set output \"$@\"; \
 	  set zeroaxis; \
 	  plot \
@@ -72,7 +72,7 @@ plot.erf.svg : Output.txt erfData.txt
 
 plot.gamma.svg : Output.txt
 		echo " \
-        set terminal svg; \
+        set terminal svg background 'white'; \
 		set zeroaxis lt -1; \
 		set xtics axis; \
 		set ytics axis; \
@@ -91,7 +91,7 @@ plot.gamma.svg : Output.txt
 
 plot.lngamma.svg : Output.txt
 		echo " \
-        set terminal svg; \
+        set terminal svg background 'white'; \
 		set zeroaxis lt -1; \
 		set xtics axis; \
 		set ytics axis; \
@@ -107,7 +107,7 @@ plot.lngamma.svg : Output.txt
 # Custom HSV palette: cyan → blue → magenta → red → yellow → green → cyan
 plot.complexGamma.svg : Output.txt
 	echo "\
-	set terminal svg size 800,600; \
+	set terminal svg background 'white'; \
 	set output \"complex_gamma_surface_plot.svg\"; \
 	set xlabel \"Re(z)\"; \
 	set ylabel \"Im(z)\"; \
@@ -127,7 +127,7 @@ plot.complexGamma.svg : Output.txt
 
 plot.complexGamma.png : Output.txt
 	echo "\
-	set terminal png size 800,600; \
+	set terminal png background 'white'; \
 	set output \"complex_gamma_surface_plot.png\"; \
 	set xlabel \"Re(z)\"; \
 	set ylabel \"Im(z)\"; \

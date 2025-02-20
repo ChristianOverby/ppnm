@@ -38,7 +38,11 @@ all: $(TARGET) output
 
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
-	./$(TARGET) > $(OUTPUT)
+	@time -f "Real: %E\nUser: %U\nSys: %S \n" >> $(OUTPUT) ./$(TARGET) 2> $(OUTPUT) >> $(OUTPUT)
+	@echo "Timing with N ∈ {1,2,3,4,5,6,7,8,9,10,11,12}" >> $(OUTPUT)
+	@for N in $$(seq 1 12); do \
+		echo "Running with $$N threads..." >> $(OUTPUT); \
+		time -f "Real: %E\nUser: %U\nSys: %S \n" >> $(OUTPUT) ./$(TARGET) -threads $$N 2>> $(OUTPUT) >> $(OUTPUT); done
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
 # $(OBJS): The object files needed to create the executable

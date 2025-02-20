@@ -1,1 +1,1 @@
-   set terminal svg;   set output "plot.erf.svg";   set zeroaxis;   plot    "Output.txt" index 0 with lines title "erf(x)"    , "erfData.txt" with points title "Tabulated erf(x)"; 
+   set terminal svg background white;   set output "plot.erf.svg";   set zeroaxis;   plot    "Output.txt" index 0 with lines title "erf(x)"    , "erfData.txt" with points title "Tabulated erf(x)"; 

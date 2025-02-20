@@ -29,26 +29,54 @@ int main()
 		f *= i;
 		std::cout << (i+1) << " " << f << std::endl;
 	}
+    std::cout << std::endl << std::endl;
 
-    // Define the grid in the complex plane.
+    // Define x-range (real axis)
     double x_min = -5.0, x_max = 5.0;
-    double y_min = -5.0, y_max = 5.0;
-    const int nx = 500; // number of grid points in real direction
-    const int ny = 500; // number of grid points in imaginary direction
+    const int nx = 220;  // number of x points
 
-    // Generate grid and compute |Gamma(z)| for each point.
+    // Define user-chosen split points for the fine and coarse regions
+    double y_coarse_min = -5.0, y_fine_min = -0.2;  // Coarse → Fine (negative side)
+    double y_fine_max = 0.2, y_coarse_max = 5.0;    // Fine → Coarse (positive side)
+
+    // Define the number of points in each segment
+    const int n_coarse = 70;  // Points for coarse segments
+    const int n_fine = 200;   // Points for fine segment
+
+    // Create a vector to hold all y values.
+    std::vector<double> y_values;
+    
+    // 1. Coarse segment: y from y_coarse_min to y_fine_min
+    for (int i = 0; i < n_coarse; i++) {
+        double y = y_coarse_min + (y_fine_min - y_coarse_min) * i / (n_coarse - 1);
+        y_values.push_back(y);
+    }
+    
+    // 2. Fine segment: y from y_fine_min to y_fine_max
+    // Skip the first point to avoid duplicate y_fine_min
+    for (int i = 1; i < n_fine; i++) {
+        double y = y_fine_min + (y_fine_max - y_fine_min) * i / (n_fine - 1);
+        y_values.push_back(y);
+    }
+    
+    // 3. Coarse segment: y from y_fine_max to y_coarse_max
+    // Skip the first point to avoid duplicate y_fine_max
+    for (int i = 1; i < n_coarse; i++) {
+        double y = y_fine_max + (y_coarse_max - y_fine_max) * i / (n_coarse - 1);
+        y_values.push_back(y);
+    }
+    
+    // Loop over the x and custom y grid.
     for (int i = 0; i < nx; i++) {
         double x = x_min + (x_max - x_min) * i / (nx - 1);
-        for (int j = 0; j < ny; j++) {
-            double y = y_min + (y_max - y_min) * j / (ny - 1);
+        for (double y : y_values) {
             std::complex<double> z(x, y);
             std::complex<double> gamma_val = sfuns::G(z);
             double abs_gamma = std::abs(gamma_val);
             double phase = std::atan2(gamma_val.imag(), gamma_val.real());
-            // double arg_gamma = std::arg(gamma_val);  // Compute the argument (phase) of Gamma(z)
-            // Write: real-part, imaginary-part, |Gamma(z)|, arg(Gamma(z))
+            // Output: real-part, imaginary-part, |Gamma(z)|, arg(Gamma(z))
             std::cout << x << " " << y << " " << abs_gamma << " " << phase << std::endl;
         }
-        std::cout << "\n"; // blank line to separate grid rows (helps pm3d in gnuplot)
+        std::cout << "\n"; // Blank line separates rows for gnuplot's pm3d.
     }
 }
