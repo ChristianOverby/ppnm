@@ -1,8 +1,8 @@
 #ifndef MATRIX_HF
 #define MATRIX_HF
 
+#include "vector.hpp"
 #include <iostream>
-#include <string>
 #include <cassert>
 #include <sstream>
 #include <cmath>
@@ -80,6 +80,16 @@ namespace ppnm {
                     {
                         if(i+offset >= 0 && i+offset < cols)
                             data[i * cols + i + offset] = value;
+                    }
+            }
+
+            // set a coloumn as a vector, this method was added due to the ease of GM ortho with vectors
+            void setCol(size_t c, ppnm::vector<T> vector) 
+            {
+                assert(vector.getSize() == rows && "Size");
+                for(size_t i = 0; i < rows; i++)
+                    {
+                        data[i*cols + c] = vector[i];
                     }
             }
 
@@ -205,9 +215,6 @@ namespace ppnm {
                 }
                 return data[row * cols + col];
             }
-
-            // return a vector, this method was made due to the ease of GM ortho on vectors
-            ppnm::vector<T> getcol();
 
             // iterator implementation
             const T* begin() const { return data; } // first element

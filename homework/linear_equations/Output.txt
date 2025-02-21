@@ -1,0 +1,15 @@
+Test of Matrix, Vmatrix and vector class: 
+1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1
+
+
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 12
+
+
+1 2 3 4 
+Random number: 83

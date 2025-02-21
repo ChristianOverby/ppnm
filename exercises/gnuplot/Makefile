@@ -102,7 +102,6 @@ plot.lngamma.svg : Output.txt
             \"$<\" index 2 with lines lw 2 lc rgb 'red' title 'Gamma(x)'; \
     " | tee log.lngamma.gpi | gnuplot
 
-
 # set palette rgb 33,13,10;
 # Custom HSV palette: cyan → blue → magenta → red → yellow → green → cyan
 plot.complexGamma.svg : Output.txt

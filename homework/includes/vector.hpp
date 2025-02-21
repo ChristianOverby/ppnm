@@ -135,6 +135,11 @@ namespace ppnm
 
                 size = 0;
             }
+
+            T getSize() {
+                return size;
+            }
+
             T& operator[](size_t index) {
                 return data[index];
             }

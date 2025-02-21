@@ -151,7 +151,7 @@ int main()
 
     std::cout << "Set the +1 offset diagonal of B to 1 \n" << B << std::endl;
 
-    ppnm::matrix<int> mat(3, 3);   // Create a 3x3 matrix
+    ppnm::matrix<double> mat(3, 3);   // Create a 3x3 matrix
     mat.set(0, 0, 1);
     mat.set(1, 1, 2);
     mat.set(0, 2, 3);
@@ -161,12 +161,25 @@ int main()
     std::cout << "Is matrix upper trianular? " << (mat.upperTriangular() ? "Yes" : "No") << std::endl;
     std::cout << "Is matrix lower trianular? " << (mat.lowerTriangular() ? "Yes" : "No") << "\n" << std::endl;
 
-    ppnm::matrix<int> transposed = mat.transpose();  // Transpose the matrix
+    ppnm::matrix<double> transposed = mat.transpose();  // Transpose the matrix
 
     std::cout << "Transpose said matrix \n" << transposed;
 
     std::cout << "Is transposed matrix upper trianular? " << (transposed.upperTriangular() ? "Yes" : "No") << std::endl;
     std::cout << "Is transposed matrix lower trianular? " << (transposed.lowerTriangular() ? "Yes" : "No") << "\n" << std::endl;
+
+     M.add(4);
+
+    std::cout << "transposed matrix and M vector: \nmatrix = \n" << transposed << "\nM = \n" << M << std::endl;
+
+    transposed.setCol(2, M);
+
+    std::cout << "transposed matrix has vector M inserted at col 3: \n" << transposed << std::endl;
+
+    transposed.setCol(1, M);
+    transposed.setCol(0, M);
+
+    std::cout << "transposed matrix has vector M inserted at all col: \n" << transposed << std::endl;
 
     return 0;
 }

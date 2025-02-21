@@ -111,22 +111,22 @@ H =
 25 98
 21 34
 
-Time taken to create 1e5 matrices: 0.011911 seconds
+Time taken to create 1e5 matrices: 0.005701 seconds
 H = 
 14 92
 42 81
 
-Time taken to create 1e5 vmatrices: 0.015854 seconds
+Time taken to create 1e5 vmatrices: 0.0065 seconds
 J = 
 58 63
 158 121
 
-Time taken to create 1e5 vmatrices and add them: 0.043128 seconds
+Time taken to create 1e5 vmatrices and add them: 0.018947 seconds
 J = 
 116 114
 88 96
 
-Time taken to create 1e5 matrices and add them: 0.032702 seconds
+Time taken to create 1e5 matrices and add them: 0.016285 seconds
 using vmatrix is slower so i will not implement any more to this class
 Convert B to identity matrix = 
 1 2
@@ -181,4 +181,22 @@ Transpose said matrix
 3 0 0
 Is transposed matrix upper trianular? No
 Is transposed matrix lower trianular? Yes
+
+transposed matrix and M vector: 
+matrix = 
+1 0 0
+0 2 0
+3 0 0
+
+M = 
+1 2 4 
+transposed matrix has vector M inserted at col 3: 
+1 0 1
+0 2 2
+3 0 4
+
+transposed matrix has vector M inserted at all col: 
+1 1 1
+2 2 2
+4 4 4
 
