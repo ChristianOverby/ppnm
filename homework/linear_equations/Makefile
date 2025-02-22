@@ -1,7 +1,8 @@
 # Makefile for compiling main.cpp and cleaning up generated files
 
 # Compiler: Specify the C++ compiler to use (g++ in this case) if needed.
-# CXX = g++ 
+# clang maybe
+#CXX = g++
 
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler warnings to catch potential issues

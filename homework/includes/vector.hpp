@@ -2,6 +2,9 @@
 #define GENLIST_HF
 
 #include <iostream>
+#include <cmath>
+#include <stdexcept>
+#include "functions.hpp"
 
 namespace ppnm
 {
@@ -18,7 +21,12 @@ namespace ppnm
             // Default constructor
             vector() : data(nullptr), size(0), capacity(0) {}
             // other constructors
-            vector(size_t startCap) : data(new T[startCap]), size(0), capacity(startCap) {}
+            vector(size_t startCap) : data(new T[startCap]), size(startCap), capacity(startCap) {
+                // Fill data with 0's
+                for (size_t i = 0; i < size; i++) {
+                    data[i] = 0;
+                }
+            }
 
 
             // destructor
@@ -50,6 +58,7 @@ namespace ppnm
                 other.size = 0;
                 other.capacity = 0;
             }
+            // copy constructor
             vector<T>& operator=(const vector<T>& other) 
             {
                 if (this != &other) {
@@ -85,6 +94,7 @@ namespace ppnm
             }
 
         private:
+            // allocate memory when needed
             void reAllocateMemory(const size_t newCap) 
             {
                 // Should allocate more memory, copy or maybe move old memory to new block and delete old memory if not moved.
@@ -102,6 +112,7 @@ namespace ppnm
             };
 
         public:
+            // add some element to the end of list
             void add(const T& value)
             {
                 if (size == capacity) {
@@ -111,6 +122,7 @@ namespace ppnm
                 data[size] = value;
                 size++;
             }
+            // remove the i'th element of the vector
             void remove(size_t i) 
             {
                 if (i >= size || i < 0) {
@@ -128,6 +140,7 @@ namespace ppnm
                 // Decrease the size
                 size--;
             }
+            // reset vector
             void clear()
             {
                 for (size_t i = 0; i < size; i++)
@@ -135,18 +148,101 @@ namespace ppnm
 
                 size = 0;
             }
-
-            T getSize() {
+            // size of vector
+            T getSize() const{
                 return size;
             }
+            // dot product
+            T dot(const vector<T>& v) const 
+            {
+                if (size != v.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size");
+                }
+                T sum = 0;
+                for (size_t i = 0; i<size; i++)
+                {
+                    sum += data[i]*v[i];
+                }
+            return sum;
+            };
+            // The same a the norm
+            T magnitude() const 
+            {
+                T sum = 0;
+                for (size_t i = 0; i < size; ++i) {
+                    sum += data[i] * data[i];
+                }
+                return std::sqrt(sum);
+            }
 
+
+            // returns the data stored at some index
             T& operator[](size_t index) {
                 return data[index];
             }
-
+            // returns the data stored at some index read only
             const T& operator[](size_t index) const {
                 return data[index];
             }
+            // Overloads the plus operator
+            vector<T> operator+(const vector<T>& other) const
+            {
+                if (size != other.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size at addition");
+                }
+                vector<T> result;
+                for (size_t i = 0; i < size; i++)
+                {
+                    result.add(data[i] + other[i]);
+                }
+                return result;
+            }
+
+            // Overloads the minus operator
+            vector<T> operator-(const vector<T>& other) const
+            {
+                if (size != other.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size at subtraction");
+                }
+                vector<T> result;
+                for (size_t i = 0; i < size; i++)
+                {
+                    result.add(data[i] - other[i]);
+                }
+                return result;
+            }
+
+            // Overloads the multiplication operator
+            vector<T> operator*(const T& scalar) const
+            {
+                vector<T> result;
+                for (size_t i = 0; i < size; i++)
+                {
+                    result.add(data[i] * scalar);
+                }
+                return result;
+            }
+
+            // Overloads the division operator
+            vector<T> operator/(const T& scalar) const
+            {
+                if (approx(scalar, T())) 
+                {
+                    throw std::invalid_argument("Divison by 0 in vector divison");
+                }
+                vector<T> result;
+                for (size_t i = 0; i < size; i++)
+                {
+                    result.add(data[i] / scalar);
+                }
+                return result;
+            }
+
+
+            // prints vector, kinda redudant probably will be removed
             void printVector() const
             {
                 for (size_t i = 0; i < size; i++)

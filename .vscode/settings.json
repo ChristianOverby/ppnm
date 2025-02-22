@@ -66,27 +66,30 @@
   // NOTE: I prefer to put this in each project, at "<PROJECT>/.vscode/settings.json"
   // This makes it easier to collaborate with others, as they can clone the repo
   // and have a mostly-working cross-platform VS Code config
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // Disable formatting and intellisense engine in Microsoft C/C++ extension (provides debugging)
   // This way you can have the other features of the extension but use clangd for LSP
   "C_Cpp.formatting": "disabled",
   "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.inlayHints.enabled": false,
+  "C_Cpp.inlayHints.parameterNames.enabled": false,
+  "C_Cpp.inlayHints.variableTypes.enabled": false,
   // Configure .clangd arguments
   "clangd.checkUpdates": true,
   "clangd.onConfigChanged": "restart",
   "clangd.arguments": [
     // --background-index              - Index project code in the background and persist index on disk.
-    "-background-index",
+    //"-background-index",
     // --header-insertion=<value>      - Add #include directives when accepting code completions
     //  =iwyu                          -   Include what you use. Insert the owning header for top-level symbols, unless the header is already directly included or the symbol is forward-declared
     //  =never                         -   Never insert #include directives as part of code completion
-    "-header-insertion=iwyu",
+    //"-header-insertion=iwyu",
     // --header-insertion-decorators   - Prepend a circular dot or space before the completion label, depending on whether an include line will be inserted or not
-    "-header-insertion-decorators",
+    //"-header-insertion-decorators",
     // --inlay-hints                   - Enable preview of InlayHints feature
-    "--inlay-hints",
+    //"--inlay-hints",
     // --function-arg-placeholders     - When disabled, completions contain only parentheses for function calls. When enabled, completions also contain placeholders for method parameters
-    "--function-arg-placeholders",
+    //"--function-arg-placeholders",
   ],
   // Prefer "Ninja"
   "cmake.generator": "Ninja",

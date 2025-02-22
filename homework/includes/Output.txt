@@ -111,22 +111,22 @@ H =
 25 98
 21 34
 
-Time taken to create 1e5 matrices: 0.005701 seconds
+Time taken to create 1e5 matrices: 0.00529 seconds
 H = 
 14 92
 42 81
 
-Time taken to create 1e5 vmatrices: 0.0065 seconds
+Time taken to create 1e5 vmatrices: 0.006385 seconds
 J = 
 58 63
 158 121
 
-Time taken to create 1e5 vmatrices and add them: 0.018947 seconds
+Time taken to create 1e5 vmatrices and add them: 0.01848 seconds
 J = 
 116 114
 88 96
 
-Time taken to create 1e5 matrices and add them: 0.016285 seconds
+Time taken to create 1e5 matrices and add them: 0.015014 seconds
 using vmatrix is slower so i will not implement any more to this class
 Convert B to identity matrix = 
 1 2

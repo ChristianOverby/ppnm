@@ -6,8 +6,7 @@
 #include <cassert>
 #include <sstream>
 #include <cmath>
-#include <type_traits>
-#include <limits>
+#include "functions.hpp"
 
 namespace ppnm {
 
@@ -16,7 +15,7 @@ namespace ppnm {
         private:
             T* data;
             size_t rows, cols;
-        public:
+        public:        
             // default constructor
             matrix() : data(nullptr), rows(0), cols(0){}
             // constructor
@@ -86,11 +85,29 @@ namespace ppnm {
             // set a coloumn as a vector, this method was added due to the ease of GM ortho with vectors
             void setCol(size_t c, ppnm::vector<T> vector) 
             {
-                assert(vector.getSize() == rows && "Size");
-                for(size_t i = 0; i < rows; i++)
+                assert(vector.getSize() == rows && "Size of vector is not the same as rows in matrix");
+                for(size_t i = 0; i < rows; i++)    
                     {
                         data[i*cols + c] = vector[i];
                     }
+            }
+            // get a coloumn as a vector, this method was also added due to the ease of GM ortho with vectors
+            ppnm::vector<T> getCol(size_t c)
+            {
+                ppnm::vector<T> temp;
+                for(size_t i = 0; i < rows; i++)
+                    {
+                        temp.add(data[i*cols + c]);
+                    }
+                return temp;
+            }
+
+            // getter methods for rows and cols
+            size_t getRows() const {
+                return rows;
+            }
+            size_t getCols() const {
+                return cols;
             }
 
             // not sure if i need this method yet. Implement later if needed
@@ -128,23 +145,12 @@ namespace ppnm {
                 }    
                 return tmpTransposed;
             }
-
-            bool approx(const T& lval, const T& rval) const
-            {
-                if constexpr (std::is_floating_point_v<T>) 
-                {
-                    return std::abs(lval - rval) <= std::numeric_limits<T>::epsilon() * std::max(std::abs(lval), std::abs(rval));
-                }
-                else return (lval == rval);
-            }
-
-
             
             bool lowerTriangular() const 
             {
                 for (size_t i = 0; i < rows; i++) {
                     for (size_t j = i + 1; j < cols; j++) {  // Only check above the diagonal (i, j)
-                        if (!approx(data[i * cols + j], 0)) {
+                        if (!approx(data[i * cols + j], T())) {
                             return false;  // Found a nonzero element above the diagonal
                         }
                     }
@@ -156,7 +162,7 @@ namespace ppnm {
             {
                 for (size_t i = 1; i < rows; i++) {  // Start from row 1
                     for (size_t j = 0; j < i; j++) {  // Only check below the diagonal (i, j)
-                        if (!approx(data[i * cols + j], 0)) {
+                        if (!approx(data[i * cols + j], T())) {
                             return false;  // Found a nonzero element below the diagonal
                         }
                     }
@@ -174,7 +180,7 @@ namespace ppnm {
                 for(size_t i = 0; i < rows * cols ; i++) {temp.data[i] = data[i] + other.data[i]; }
                 return temp;
             }
-            // matrix subtraction
+            // matrix subtraction overload
             matrix<T> operator-(const matrix<T>& other) const
             {
                 assert(rows == other.rows && cols == other.cols); // Ensure sizes match
@@ -182,14 +188,31 @@ namespace ppnm {
                 for(size_t i = 0; i < rows * cols ; i++) {temp.data[i] = data[i] - other.data[i]; }
                 return temp;
             }
-            // matrix multiplication (Scalar)
+            // matrix multiplication overload (Scalar)
             matrix<T> operator*(const T& x) const
             {
                 matrix<T> temp(rows, cols);
                 for(size_t i = 0; i < rows * cols ; i++) {temp.data[i] = data[i]*x; }
                 return temp;
             }
-            // Matrix divison (scalar)
+            // Matrix multiplication overload (vector)
+            ppnm::vector<T> operator*(const ppnm::vector<T>& vec) const 
+            {
+                assert(cols == vec.getSize() && "rows in matrix and size of vector should be the same.");
+                ppnm::vector<T> tempVec;
+                for(size_t i = 0; i < rows; i++) 
+                {
+                    T sum = 0;
+                    for(size_t j = 0; j < cols; j++)
+                    {
+                        sum += data[j+i*cols]*vec[j];
+                    }
+                    tempVec.add(sum);
+                }
+                return tempVec;
+            }
+
+            // Matrix divison overload (scalar)
             matrix<T> operator/(const T& x) const
             {
                 assert(x != T() && "Division by default constructed value. e.g. zero");
@@ -207,7 +230,7 @@ namespace ppnm {
                 return data[row * cols + col];
             }
 
-            // Const version for read-only access
+            // Const version of () operator overlaod for read-only access
             const T& operator()(size_t row, size_t col) const 
             {
                 if (row >= rows || col >= cols) {
