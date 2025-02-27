@@ -3,24 +3,32 @@
 
 #include <cmath>
 #include <type_traits>
-#include <limits>
 
 // approximatively equal values to use when any floats are involved.
 namespace ppnm {
 template<typename T>
-bool approx(const T& lval, const T& rval)
+bool approx(const T& lval, const T& rval, T tol = 1e-10)
+{
+    static_assert(std::is_arithmetic_v<T>, "Dude why are you comparing non arithmetic types?");
+
+    if constexpr (std::is_floating_point_v<T>)  // constexpr is a nice flag that just tells compiler that this can be done at compiletime
     {
-        if constexpr (std::is_floating_point_v<T>) 
-        {
-            if (std::abs(lval - rval) <= std::numeric_limits<T>::epsilon()) {
-                return true;  // Absolute error check - values close to 0
-            }
-            // relative precision check, useful for larger numbers, 
-            return std::abs(lval - rval) <= std::numeric_limits<T>::epsilon() * std::max(std::abs(lval), std::abs(rval));
-        } else {
-            return (lval == rval);  // Exact comparison for non-floating-point types
+        T diff = std::abs(lval - rval);
+        T largest = std::max(std::abs(lval), std::abs(rval));
+
+        // Absolute check for very small numbers
+        if (diff <= tol) {
+            return true;
         }
+
+        // Relative precision check for larger numbers
+        return diff <= tol * largest;
+    } 
+    else 
+    {
+        return (lval == rval); // Exact match for non-floating types
     }
+}
 }; // typename ppnm
 
 #endif // FUNCTIONS_HF

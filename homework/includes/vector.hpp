@@ -24,7 +24,7 @@ namespace ppnm
             vector(size_t startCap) : data(new T[startCap]), size(startCap), capacity(startCap) {
                 // Fill data with 0's
                 for (size_t i = 0; i < size; i++) {
-                    data[i] = 0;
+                    data[i] = T();
                 }
             }
 
@@ -176,7 +176,6 @@ namespace ppnm
                 return std::sqrt(sum);
             }
 
-
             // returns the data stored at some index
             T& operator[](size_t index) {
                 return data[index];
@@ -241,6 +240,15 @@ namespace ppnm
                 return result;
             }
 
+            bool operator==(const vector& vec) const {
+                if(vec.getSize() != size) {
+                    return false;
+                }
+                for (size_t i =0; i < size; i++) {
+                    if(!ppnm::approx(data[i], vec[i])) return false;
+                }
+                return true;
+            }
 
             // prints vector, kinda redudant probably will be removed
             void printVector() const

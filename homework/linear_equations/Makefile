@@ -23,7 +23,7 @@ LDLIBS += -lm -lstdc++
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp ../includes/matrix.cpp ../includes/vector.cpp ../includes/vmatrix.cpp
+SRCS = main.cpp ../includes/matrix.cpp ../includes/vector.cpp ../includes/vmatrix.cpp QRGS.cpp tests.cpp ../includes/log.cpp
 
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt
@@ -36,6 +36,33 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 # Default target: The target that will be built when you run `make` without arguments
 # It depends on the $(TARGET) rule, which will build the executable
 all: $(TARGET) output
+
+plot.time.svg : out.times.data
+	@echo " \
+		set terminal svg background 'white'; \
+		set output \"$@\"; \
+		set xlabel 'Matrix Size N'; \
+		set ylabel 'Time (seconds)'; \
+		set title 'QR Factorization Complexity'; \
+		set grid; \
+		set key left top; \
+		set zeroaxis; \
+		f(x) = a * x**3; \
+		fit f(x) '$<' using 1:2 via a; \
+		plot '$<' using 1:2 with points title 'Measured Time', \
+		     f(x) with lines title 'O(N³) Fit'; \
+	" | tee log.time.gpi | gnuplot
+# Target: out.times.data
+# This target measures the execution time of QR-factorizing an NxN matrix
+# for various values of N and stores the results in out.times.data.
+# awk line to divide the recorded time by 2 since it's run twice
+REPETITIONS = 20
+out.times.data: $(TARGET)
+	> $@
+	for N in $$(seq 100 10 300); do \
+		time --format="$$N %e" --output=$@ --append ./$(TARGET) -ssq $$N,$(REPETITIONS) 1>out 2>err; \
+		awk -v n=$$N '{ if ($$1 == n) $$2 = $$2 / $(REPETITIONS); print $$1, $$2; }' $@ > temp && mv temp $@; \
+	done
 
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
@@ -63,8 +90,10 @@ $(TARGET): $(OBJS)
 # rm -f: Forcefully remove files without prompting for confirmation
 # $(OBJS): Removes all object files
 # $(TARGET): Removes the final executable
+
 clean:
-	rm -f $(OBJS) $(TARGET) Output.txt output.txt outputData.txt inputData.txt
+	rm -f $(OBJS) $(TARGET) Output.txt output.txt outputData.txt \
+	inputData.txt out.times.data out.times.data plot.time.svg log.time.gpi fit.log err
 
 # Phony targets: Targets that are not actual files but are used as commands
 # all: The default target to build the executable

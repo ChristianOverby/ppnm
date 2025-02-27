@@ -6,6 +6,7 @@
 #include <cassert>
 #include <sstream>
 #include <cmath>
+#include <cstdlib>
 #include "functions.hpp"
 
 namespace ppnm {
@@ -20,7 +21,7 @@ namespace ppnm {
             matrix() : data(nullptr), rows(0), cols(0){}
             // constructor
             matrix(size_t rows, size_t cols) : data(new T[rows*cols]), rows(rows), cols(cols){
-                for(size_t i = 0; i<rows*cols; i++) data[i] = T();
+                for(size_t i = 0; i<rows*cols; i++) {data[i] = T();}
             }
             // copy constructor
             matrix(matrix<T> const& other) : data(new T[other.rows*other.cols]),rows(other.rows), cols(other.cols){
@@ -33,8 +34,11 @@ namespace ppnm {
                 other.rows = 0;
                 other.cols = 0;
             }
-            // delete constructor
-            ~matrix(){delete[] data;}   
+            // destructor
+            ~matrix()
+            {
+                delete[] data;
+            }   
             // copy assignment
             matrix<T>& operator=(matrix<T> const& other)
             {
@@ -110,13 +114,14 @@ namespace ppnm {
                 return cols;
             }
 
+
             // not sure if i need this method yet. Implement later if needed
             void resize(const size_t& newcols, const size_t& newrows){
                 if(newrows == rows && newcols == cols) return;
                 std::cerr << "Function resize(const size_t& newcols, const size_t& newrows) not implemented" << std::endl;
                 std::abort();  // Aborts the program
             }
-
+        // Creation methods
             // method for creating an idenitity matrix of same size as another matrix
             matrix<T> identity() const 
             {
@@ -133,10 +138,10 @@ namespace ppnm {
                 }
                 return tmpIdentity;
             }
-
+            // Return a transposed matrix
             matrix<T> transpose() const 
             {
-                matrix<T> tmpTransposed(rows, cols);
+                matrix<T> tmpTransposed(cols, rows);
 
                 for(size_t i = 0; i < rows; i++){
                     for(size_t j = 0; j < cols; j++) {
@@ -145,12 +150,28 @@ namespace ppnm {
                 }    
                 return tmpTransposed;
             }
-            
+            // Return randomized matrix of same size
+            matrix<T> randomizedMatrix(const int& start,const int& end ) const 
+            {
+                if (start >= end) {
+                    throw std::invalid_argument("start must be less than end");
+                }
+            matrix<T> tmpMatrix(rows, cols);
+            for (size_t i = 0; i < tmpMatrix.getRows(); ++i) {
+                for (size_t j = 0; j < tmpMatrix.getCols(); ++j) {
+                    tmpMatrix.set(i, j, static_cast<T>((std::rand()) % (end-start)) + start);
+
+                }
+            }
+            return tmpMatrix;
+            }
+
+
             bool lowerTriangular() const 
             {
-                for (size_t i = 0; i < rows; i++) {
+                for (size_t i = 0; i < std::min(rows, cols); i++) {
                     for (size_t j = i + 1; j < cols; j++) {  // Only check above the diagonal (i, j)
-                        if (!approx(data[i * cols + j], T())) {
+                        if (!ppnm::approx(data[i * cols + j], T())) {
                             return false;  // Found a nonzero element above the diagonal
                         }
                     }
@@ -160,14 +181,16 @@ namespace ppnm {
 
             bool upperTriangular() const 
             {
-                for (size_t i = 1; i < rows; i++) {  // Start from row 1
-                    for (size_t j = 0; j < i; j++) {  // Only check below the diagonal (i, j)
-                        if (!approx(data[i * cols + j], T())) {
+                for (size_t i = 1; i < rows; i++) {  // Start from row 1, since this makes sense.
+                    for (size_t j = 0; j < std::min(i, cols); j++) {  // Only check below the diagonal (i, j)
+                        if (!ppnm::approx(data[i * cols + j], T())) {
+                            std::cout << "\n Nonzero below diagonal at (" << i << ", " << j 
+                          << "): " << data[i * cols + j] << std::endl;
                             return false;  // Found a nonzero element below the diagonal
                         }
                     }
                 }
-                return true;  // If all off-diagonal elements are approximately zero, it's upper triangular
+                return true;
             }
 
 
@@ -212,6 +235,26 @@ namespace ppnm {
                 return tempVec;
             }
 
+            // Matrix multiplication overload (vector)
+            ppnm::matrix<T> operator*(const ppnm::matrix<T>& other) const 
+            {
+                assert(cols == other.getRows() && "rows in matrix and size of vector should be the same.");
+                ppnm::matrix<T> tempMat(rows, other.getCols());
+                for (size_t i = 0; i < rows; i++) 
+                {
+                    for (size_t j = 0; j < other.getCols(); j++) 
+                    {
+                        T sum = 0;
+                        for (size_t k = 0; k < cols; k++) // Iterate over shared dimension
+                        {
+                            sum += data[k + i * cols] * other(k, j); 
+                        }
+                        tempMat(i, j) = sum; // Assign result
+                    }
+                }
+                return tempMat;
+            }
+
             // Matrix divison overload (scalar)
             matrix<T> operator/(const T& x) const
             {
@@ -221,6 +264,20 @@ namespace ppnm {
                 return temp;
             }
 
+            bool operator==(const matrix<T>& mat) const
+            {
+                if (mat.getRows() != rows || mat.getCols() != cols)
+                    return false;
+            for (size_t i = 0; i < rows; ++i) {
+                for (size_t j = 0; j < cols; ++j) {
+                    if (!ppnm::approx(mat(i, j), data[i * cols + j])) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+            }
+            
             // Overload the () operator for element access and modification
             T& operator()(size_t row, size_t col) 
             {

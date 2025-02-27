@@ -1,54 +1,56 @@
 #include <iostream>
-#include <cstdlib>
-#include "../includes/matrix.hpp"
-#include "../includes/vmatrix.hpp"
-#include "../includes/vector.hpp"
+#include "tests.hpp"
 #include "QRGS.hpp"
+#include <regex>
+#include "../includes/matrix.hpp"
 
-int main() 
-{   
-    // Simple tests i did to make sure stuff works.
-    ppnm::matrix<double> testMatrix(4,4);
-    testMatrix = testMatrix.identity();
-    ppnm::vmatrix<double> testVmatrix(4,4);
-    testVmatrix.set(3,3,12);
-    ppnm::vector<double> testVector;
-    testVector.add(1);
-    testVector.add(2);
-    testVector.add(3);
-    testVector.add(4);
-    std::cout << "Test of Matrix, Vmatrix and vector class: \n" << testMatrix << "\n\n" << testVmatrix << "\n\n" << testVector << std::endl; 
-    int q = std::rand() % 100;
-    std::cout << "Random number: " << q << std::endl;
-    // fill testMatrix with random numbers
-    srand(1);
-    for (size_t i = 0; i < testMatrix.getRows(); ++i) {
-        for (size_t j = 0; j < testMatrix.getCols(); ++j) {
-            testMatrix.set(i, j, std::rand() % 100);
+int main(int argc, char* arg[]) 
+{ 
+    std::string str;
+    std::string input;
+    for (int i = 1; i < argc; i++) {
+        str = arg[i];
+        if(str == "--runUnitTest" || str == "-rut") {
+            std::cout << "\nDoing one testQRGSdecomp verbose test:" << std::endl;
+        ppnm::testQRGSdecomp(1, true);
+        std::cout << "\nTesting QR decomp on 500 0-20 x 0-20 matricies" << std::endl;
+        ppnm::testQRGSdecomp(500);
+        
+        std::cout << "\nDoing one testQRGSsolve verbose test:" << std::endl;
+        ppnm::testQRGSsolve(1, true);
+        std::cout << "\nTesting solve on 500 0-20 x 0-20 matricies and 0-20 vector" << std::endl;
+        ppnm::testQRGSsolve(500);
+
+        std::cout << "\nDoing one testQRGSinverse verbose test:" << std::endl;
+        ppnm::testQRGSinverse(1, true);
+        std::cout << "\nTesting inverse on 500 0-20 x 0-20 matricies" << std::endl;
+        ppnm::testQRGSsolve(500);
+        }
+        if(str == "--sizeSquare" || str == "-ssq") {
+            // no error checking for more numbers. Only checks the first two inpiuts
+             if (i+1 < argc) {
+                input = arg[i+1];
+                std::stringstream nStream(input);
+                std::string matchOutput;
+                std::regex numberPattern(R"(^-?\d+$)"); // Matches integers
+                std::getline(nStream, matchOutput, ',');
+                if(!std::regex_match(matchOutput, numberPattern)) {
+                    std::cerr << "Error: Expected a number as input at:" << "\t" << matchOutput << "\n\t" << " in number inputs:" << "\t" << input << std::endl;
+                    break;
+                };
+                int m = std::stod(matchOutput);
+                std::getline(nStream, matchOutput, ',');
+                if(!std::regex_match(matchOutput, numberPattern)) {
+                    std::cerr << "Error: Expected a number as input at:" << "\t" << matchOutput << "\n\t" << " in number inputs:" << "\t" << input << std::endl;
+                    break;
+                };
+                int rep = std::stod(matchOutput);
+                for (int i =0;i < rep; i++){
+                    ppnm::matrix<double> matrix(m,m); matrix = matrix.randomizedMatrix(0, 100);
+                    ppnm::QRGS<double> matrixQRdecomposed(matrix);
+                    }
+                }
         }
     }
-
-    std::cout << "print matrix \n" << testMatrix << std::endl;
-
-    ppnm::QRGS test(testMatrix);
-    
-    test.printMatrices();
-
-    ppnm::vector<double> solveTest = test.solve(testVector);
-    
-    std::cout << "Solve the testMatrix*x = testVector:  \n" << solveTest << std::endl;
-
-    // Example matrix (2x3)
-    ppnm::matrix<double> mat(2, 3);
-    mat(0, 0) = 1; mat(0, 1) = 2; mat(0, 2) = 3;
-    mat(1, 0) = 4; mat(1, 1) = 5; mat(1, 2) = 6;
-
-    // Example vector (3x1)
-    ppnm::vector<double> vec;
-    vec.add(1);
-    vec.add(2);
-    vec.add(3);
-
-
     return 0;
 }
