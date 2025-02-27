@@ -66,7 +66,7 @@ out.times.data: $(TARGET)
 
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
-	./$(TARGET) > $(OUTPUT)
+	./$(TARGET) -rut > $(OUTPUT)
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
 # $(OBJS): The object files needed to create the executable
