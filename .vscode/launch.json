@@ -1,33 +1,17 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C++ Program",
-            "type": "cppdbg",
+            "name": "Debug with CodeLLDB",
+            "type": "lldb",
             "request": "launch",
-            "program": "/home/overby/ppnm/exercises/input_output/debug", // Path to your compiled executable
-            "args": [], // Arguments to pass to the program
-            "stopAtEntry": false, // Set to true to stop at the entry point of the program
-            "cwd": "/home/overby/ppnm/exercises/input_output", // Current working directory
-            "environment": [],
-            "externalConsole": false, // Set to true to use an external console
-            "MIMode": "gdb", // Use GDB as the debugger
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build", // Task to run before launching the debugger
-            "miDebuggerPath": "/usr/bin/gdb", // Path to GDB
-            "logging": {
-                "engineLogging": false,
-                "trace": false,
-                "traceResponse": false
+            "program": "${workspaceFolder}/homework/linear_equations/main", // Path to your executable
+            "args": [], // Command-line arguments
+            "cwd": "${workspaceFolder}", // Working directory
+            "stopOnEntry": true,  // Stop at main()
+            "terminal": "integrated", // Use the integrated terminal
+            "sourceMap": {
+                "/build": "${workspaceFolder}" // Map build paths to source paths (if needed)
             }
         }
     ]

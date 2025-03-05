@@ -6,6 +6,10 @@
 
 int main(int argc, char* arg[]) 
 { 
+    // note that doing it this way is a terrible idea. Should just define what should be run
+    // Also using the bash time util is not optimal due to different reasons. e.g you cannot run different things
+    // at the same time also the precision is only to millisecond...
+    // would definitely use chronos next time and just write the data to a filestream.
     std::string str;
     std::string input;
     for (int i = 1; i < argc; i++) {
@@ -52,5 +56,10 @@ int main(int argc, char* arg[])
                 }
         }
     }
+
+    
+
+    ppnm::matrix<double> matrix(6,6); matrix = matrix.randomizedMatrix(0, 100);
+    ppnm::QRGS<double> matrixQRdecomposed(matrix);
     return 0;
 }

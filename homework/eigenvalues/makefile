@@ -5,12 +5,12 @@
 #CXX = g++
 
 # Compiler flags: Options passed to the compiler during compilation
-# -Wall: Enable all compiler w	arnings to catch potential issues
+# -Wall: Enable all compiler warnings to catch potential issues
 # -std=c++23: Use the C++23 standard for compilation
 # -Wextra: Extra errors
 # -ferror-limit=1: tells the compiler to stop after encountering one error
 
-CXXFLAGS += -Wall -Wextra -std=c++23 -pg -O1
+CXXFLAGS += -Wall -std=c++23
 
 # Linker flags: Libraries to link against (e.g., -lm for math functions)
 # -lm → Links libm (Math library)
@@ -22,12 +22,10 @@ LDLIBS += -lm -lstdc++
 # Target executable: The name of the final executable file to be created
 TARGET = main
 
-# Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp ../includes/matrix.cpp ../includes/vector.cpp ../includes/vmatrix.cpp QRGS.cpp tests.cpp ../includes/log.cpp
-
+# Source files: List of all source files to be compiled
+SRCS = main.cpp EVD.cpp hydrogen.cpp
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt
-PLOT_DATA_OUTPUT = benchmark.csv
 
 # Object files: List of object files to be generated from the source files
 # This replaces the .cpp extension with .o for each source file
@@ -38,36 +36,10 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 # It depends on the $(TARGET) rule, which will build the executable
 all: $(TARGET) output
 
-plot.benchmark.svg : $(PLOT_DATA_OUTPUT)
-	@echo " \
-		set terminal svg background 'white'; \
-		set output \"$@\"; \
-		set xlabel 'Matrix Size N'; \
-		set ylabel 'Time (seconds)'; \
-		set title 'QR Factorization Complexity'; \
-		set grid; \
-		set key left top; \
-		set zeroaxis; \
-		f(x) = a * x**3; \
-		fit f(x) '$<' using 1:2 via a; \
-		plot '$<' using 1:2 with points title 'Measured Time', \
-		     f(x) with lines title 'O(N³) Fit'; \
-	" | tee log.benchmark.gpi | gnuplot
-# Target: $(PLOT_DATA_OUTPUT)
-# This target measures the execution time of QR-factorizing an NxN matrix
-# for various values of N and stores the results in $(PLOT_DATA_OUTPUT).
-# awk line to divide the recorded time by 2 since it's run twice
-# add line for more repititions... awk -v n=$$N '{ if ($$1 == n) $$2 = $$2 / $(REPETITIONS); print $$1, $$2; }' $@ > temp && mv temp $@;
-REPETITIONS = 1
-$(PLOT_DATA_OUTPUT): $(TARGET)
-	> $@
-	for N in $$(seq 200 3 400); do \
-		time --format="$$N %e" --output=$@ --append ./$(TARGET) -ssq $$N,$(REPETITIONS); \
-	done
-
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)
-	./$(TARGET) -rut > $(OUTPUT)
+	./$(TARGET) > $(OUTPUT)
+
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
 # $(OBJS): The object files needed to create the executable
@@ -93,8 +65,7 @@ $(TARGET): $(OBJS)
 # $(TARGET): Removes the final executable
 
 clean:
-	rm -f $(OBJS) $(TARGET) Output.txt output.txt outputData.txt \
-	inputData.txt $(PLOT_DATA_OUTPUT) plot.benchmark.svg log.benchmark.gpi fit.log err out
+	rm -f $(OBJS) $(TARGET) Output.txt
 
 # Phony targets: Targets that are not actual files but are used as commands
 # all: The default target to build the executable

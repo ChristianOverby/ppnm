@@ -39,17 +39,26 @@ namespace ppnm {
             {
                 delete[] data;
             }   
-            // copy assignment
-            matrix<T>& operator=(matrix<T> const& other)
+            matrix<T>& operator=(const matrix<T>& other)
             {
-                if(this != &other){
-                    delete[] data;
-                    data = new T[rows*cols];
-                    rows = other.rows;
-                    cols = other.cols;
-                    for(size_t i = 0; i<rows*cols; i++) data[i] = other.data[i];
+            if (this != &other) {
+                // Allocate new memory first before deleting the old data
+                T* new_data = new T[other.rows * other.cols]; 
+                
+                // Copy over the values
+                for (size_t i = 0; i < other.rows * other.cols; i++) {
+                    new_data[i] = other.data[i];
                 }
-                return *this;
+
+                // Now it's safe to delete old memory
+                delete[] data;
+
+                // Update object properties
+                data = new_data;
+                rows = other.rows;
+                cols = other.cols;
+            }
+            return *this;
             }
 
             // Move assignment
@@ -67,7 +76,7 @@ namespace ppnm {
                 return *this; // Returning a reference to the current object
             }
 
-    // Methods
+        // Methods
             // Method to set the value at a specific row and column
             void set(size_t row, size_t col, const T& value) {
                 if (row >= rows || col >= cols) {
@@ -87,23 +96,13 @@ namespace ppnm {
             }
 
             // set a coloumn as a vector, this method was added due to the ease of GM ortho with vectors
-            void setCol(size_t c, ppnm::vector<T> vector) 
+            void setCol(size_t c, const ppnm::vector<T>& vector) 
             {
                 assert(vector.getSize() == rows && "Size of vector is not the same as rows in matrix");
                 for(size_t i = 0; i < rows; i++)    
                     {
                         data[i*cols + c] = vector[i];
                     }
-            }
-            // get a coloumn as a vector, this method was also added due to the ease of GM ortho with vectors
-            ppnm::vector<T> getCol(size_t c)
-            {
-                ppnm::vector<T> temp;
-                for(size_t i = 0; i < rows; i++)
-                    {
-                        temp.add(data[i*cols + c]);
-                    }
-                return temp;
             }
 
             // getter methods for rows and cols
@@ -112,14 +111,6 @@ namespace ppnm {
             }
             size_t getCols() const {
                 return cols;
-            }
-
-
-            // not sure if i need this method yet. Implement later if needed
-            void resize(const size_t& newcols, const size_t& newrows){
-                if(newrows == rows && newcols == cols) return;
-                std::cerr << "Function resize(const size_t& newcols, const size_t& newrows) not implemented" << std::endl;
-                std::abort();  // Aborts the program
             }
         // Creation methods
             // method for creating an idenitity matrix of same size as another matrix
@@ -159,10 +150,23 @@ namespace ppnm {
             matrix<T> tmpMatrix(rows, cols);
             for (size_t i = 0; i < tmpMatrix.getRows(); ++i) {
                 for (size_t j = 0; j < tmpMatrix.getCols(); ++j) {
-                    tmpMatrix.set(i, j, static_cast<T>((std::rand()) % (end-start)) + start);
+                    tmpMatrix.data[i * cols + j] = static_cast<T>((std::rand()) % (end - start)) + start;
 
                 }
             }
+            return tmpMatrix;
+            }
+            // only returns a square matrice with size equal to cols in the used matrix
+            matrix<T> randomizedSymetricMatrix(const int& start,const int& end ) const {
+            // Generate a random symmetric matrix A = B + B^T
+            matrix<T> tmpMatrix(rows, cols);
+            size_t n = cols;
+            for (size_t i = 0; i < n; i++)
+                for (size_t j = i; j < n; j++) {
+                    T val = static_cast<T>((std::rand()) % (end - start)) + start;  // Random value in [0, 10)
+                    tmpMatrix.data[i * cols + j] = val;
+                    tmpMatrix.data[j * cols + i] = val;  // Ensure symmetry
+                }
             return tmpMatrix;
             }
 
@@ -222,20 +226,23 @@ namespace ppnm {
             ppnm::vector<T> operator*(const ppnm::vector<T>& vec) const 
             {
                 assert(cols == vec.getSize() && "rows in matrix and size of vector should be the same.");
-                ppnm::vector<T> tempVec;
-                for(size_t i = 0; i < rows; i++) 
+                
+                // Initialize the result vector with the correct size (rows of the matrix)
+                ppnm::vector<T> tempVec(rows);  // Allocate memory upfront for the resulting vector
+
+                for (size_t i = 0; i < rows; i++) 
                 {
                     T sum = 0;
-                    for(size_t j = 0; j < cols; j++)
+                    for (size_t j = 0; j < cols; j++)
                     {
-                        sum += data[j+i*cols]*vec[j];
+                        sum += data[j + i * cols] * vec[j];  // Direct multiplication and accumulation
                     }
-                    tempVec.add(sum);
+                    tempVec[i] = sum;  // Directly assign the result to the vector
                 }
                 return tempVec;
             }
 
-            // Matrix multiplication overload (vector)
+            // Matrix multiplication overload (matrix)
             ppnm::matrix<T> operator*(const ppnm::matrix<T>& other) const 
             {
                 assert(cols == other.getRows() && "rows in matrix and size of vector should be the same.");
@@ -294,6 +301,30 @@ namespace ppnm {
                     throw std::out_of_range("Matrix indices out of range");
                 }
                 return data[row * cols + col];
+            }
+
+            // Get a column as a vector (non-const)
+            ppnm::vector<T> operator[](const size_t& c)
+            {
+                // Initialize the result vector with the correct size (rows of the matrix)
+                ppnm::vector<T> temp(rows);  // Allocate memory upfront for the resulting column vector
+                for (size_t i = 0; i < rows; i++)
+                {
+                    temp[i] = data[i * cols + c];  // Direct assignment to the vector element
+                }
+                return temp;
+            }
+
+            // Get a column as a vector (const version)
+            const ppnm::vector<T> operator[](const size_t& c) const
+            {
+                // Initialize the result vector with the correct size (rows of the matrix)
+                ppnm::vector<T> temp(rows);  // Allocate memory upfront for the resulting column vector
+                for (size_t i = 0; i < rows; i++)
+                {
+                    temp[i] = data[i * cols + c];  // Direct assignment to the vector element
+                }
+                return temp;
             }
 
             // iterator implementation

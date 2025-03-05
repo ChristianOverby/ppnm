@@ -8,34 +8,21 @@
 
 namespace ppnm {
 template <typename T> struct QRGS {
-  ppnm::matrix<T> Q, A, R;
+  ppnm::matrix<T> A, Q, R;
   // A matrix for storing the Input matrix
 
   // fyi should proably use a vectorconstructed matrix for this. However i stopped devloping mine since it was
-  // a couple of miliseconds slower...
+  // a couple of milliseconds slower...
   // constructor performs stabilized Gram-Schmidt orthogonalization of an n×m (where n≥m) matrix A calculating R & Q.
-  QRGS(ppnm::matrix<T> A) : Q(A.getRows(), A.getCols()), A(A), R(A.getCols(), A.getCols()) 
-  {
-    size_t m = A.getCols();
-    for (size_t i = 0; i < m; i++)
-    {
-      R(i,i) = A.getCol(i).magnitude();
-
-      // Check for zero magnitude (linear dependence)
-      if (ppnm::approx(R(i,i), T())) 
-        {
-            throw std::runtime_error("Matrix is rank-deficient (division by zero)");
-        }
-
-      // Normalize i'th input matrix coloumn and put in Q 
-      Q.setCol(i, A.getCol(i)/R(i,i));
-
-      // subtract this projection from the rest of A coloumns - BAD since subtraction loses A LOT of precicion.
-      for (size_t j = i+1; j < m; j++) 
-      {
-        R(i,j) = Q.getCol(i).dot(A.getCol(j));
-        ppnm::vector tempvec = A.getCol(j)-Q.getCol(i)*R(i,j);
-        A.setCol(j, tempvec);
+  QRGS(const ppnm::matrix<T>& M) : A(M), Q(M), R(M.getCols(), M.getCols()) {
+    size_t m = M.getCols();
+    for (size_t i = 0; i < m; i++) {
+      R(i, i) = Q[i].magnitude();
+      if (ppnm::approx(R(i, i), T())) { throw std::runtime_error("Matrix is rank-deficient (division by zero)");} // Check for zero magnitude (linear dependence)
+      Q.setCol(i, Q[i] / R(i, i)); // Normalize i'th input matrix coloumn and put in Q
+      for (size_t j = i + 1; j < m; j++) {     // subtract this projection from the rest of A coloumns
+        R(i, j) = Q[i].dot(Q[j]);
+        Q.setCol(j, Q[j] - Q[i] * R(i, j));
       }
     }
   }

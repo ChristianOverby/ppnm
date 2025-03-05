@@ -28,7 +28,7 @@ void testQRGSdecomp(const int& repetitions, const bool& printOut){
     // Q^T * Q
     ppnm::matrix<double> QTQ = Q.transpose() * Q;
 
-    // Approximate all indices of the matrix with 0 and set it to 0 if true
+    // Approximate all indices of the matrix with 0 or 1 and set it to 0 or 1 if true
     for (size_t i = 0; i < QTQ.getRows(); ++i) {
         for (size_t j = 0; j < QTQ.getCols(); ++j) {
             if (ppnm::approx(QTQ(i, j), 0.0)) {

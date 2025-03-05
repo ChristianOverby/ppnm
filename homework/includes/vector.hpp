@@ -33,6 +33,8 @@ namespace ppnm
             ~vector()
             {
                 // Just delete whatever spot on the heap the data points to
+                size = 0;
+                capacity = 0;
                 delete[] data;
             }
             // Copy constructor
@@ -166,7 +168,7 @@ namespace ppnm
                 }
             return sum;
             };
-            // The same a the norm
+            // The same as the norm
             T magnitude() const 
             {
                 T sum = 0;
@@ -191,10 +193,12 @@ namespace ppnm
                 {
                     throw std::invalid_argument("Vectors must be of the same size at addition");
                 }
-                vector<T> result;
+
+                // Initialize the result vector with the correct size
+                vector<T> result(size);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result.add(data[i] + other[i]);
+                    result[i] = data[i] + other[i];  // Directly assign to the elements
                 }
                 return result;
             }
@@ -206,10 +210,12 @@ namespace ppnm
                 {
                     throw std::invalid_argument("Vectors must be of the same size at subtraction");
                 }
-                vector<T> result;
+
+                // Initialize the result vector with the correct size
+                vector<T> result(size);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result.add(data[i] - other[i]);
+                    result[i] = data[i] - other[i];  // Directly assign to the elements
                 }
                 return result;
             }
@@ -217,10 +223,10 @@ namespace ppnm
             // Overloads the multiplication operator
             vector<T> operator*(const T& scalar) const
             {
-                vector<T> result;
+                vector<T> result(size);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result.add(data[i] * scalar);
+                    result[i] = data[i] * scalar;  // Directly assign to the elements
                 }
                 return result;
             }
@@ -230,12 +236,13 @@ namespace ppnm
             {
                 if (approx(scalar, T())) 
                 {
-                    throw std::invalid_argument("Divison by 0 in vector divison");
+                    throw std::invalid_argument("Division by 0 in vector division");
                 }
-                vector<T> result;
+
+                vector<T> result(size);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result.add(data[i] / scalar);
+                    result[i] = data[i] / scalar;  // Directly assign to the elements
                 }
                 return result;
             }
