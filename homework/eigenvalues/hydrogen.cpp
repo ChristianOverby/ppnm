@@ -1,4 +1,5 @@
 #include "hydrogen.hpp"
+#include "EVD.hpp"
 
 namespace ppnm
 {
@@ -30,7 +31,9 @@ namespace ppnm
 
     void hydrogenSchrodinger::solve()
     {
-        
+        ppnm::EVD evd(H);
+        ppnm::vector<double> egValues = evd.w;
+        ppnm::matrix<double> egVectors = evd.V;
     }
     
     void hydrogenSchrodinger::wavefunctions()

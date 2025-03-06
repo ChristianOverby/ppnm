@@ -21,10 +21,12 @@ namespace ppnm
             // Default constructor
             vector() : data(nullptr), size(0), capacity(0) {}
             // other constructors
-            vector(size_t startCap) : data(new T[startCap]), size(startCap), capacity(startCap) {
+            vector(size_t startCap, bool init = true) : data(new T[startCap]), size(startCap), capacity(startCap) {
                 // Fill data with 0's
+                if(init) {
                 for (size_t i = 0; i < size; i++) {
                     data[i] = T();
+                }
                 }
             }
 
@@ -60,7 +62,7 @@ namespace ppnm
                 other.size = 0;
                 other.capacity = 0;
             }
-            // copy constructor
+            // copy assginment
             vector<T>& operator=(const vector<T>& other) 
             {
                 if (this != &other) {
@@ -151,7 +153,7 @@ namespace ppnm
                 size = 0;
             }
             // size of vector
-            T getSize() const{
+            size_t getSize() const{
                 return size;
             }
             // dot product
@@ -164,7 +166,7 @@ namespace ppnm
                 T sum = 0;
                 for (size_t i = 0; i<size; i++)
                 {
-                    sum += data[i]*v[i];
+                    sum += data[i]*v.data[i];
                 }
             return sum;
             };
@@ -186,6 +188,48 @@ namespace ppnm
             const T& operator[](size_t index) const {
                 return data[index];
             }
+
+            vector<T>& operator+=(const vector<T>& other) { // addition assignment
+            if (size != other.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size at addition");
+                }
+                for (size_t i=0; i<size; i++) data[i] += other.data[i];
+                return *this;
+            }
+
+            vector<T>& operator-=(const vector<T>& other) { // subtraction assignment
+            if (size != other.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size at addition");
+                }
+                for (size_t i=0; i<size; i++) data[i] -= other.data[i];
+                return *this;
+            }
+
+            vector<T>& operator-() { // unary negation
+                for (size_t i=0; i<size; i++) data[i] = -data[i];
+                return *this;
+            }
+
+            vector<T>& operator*=(const vector<T>& other) { // dot product assignment
+                if (size != other.size) 
+                {
+                    throw std::invalid_argument("Vectors must be of the same size at addition");
+                }
+                for (size_t i=0; i<size; i++) data[i] *= other.data[i];
+                return *this;
+            }
+
+            vector<T>& operator*=(T x) { // scalar multiplication assignment
+                for (size_t i=0; i<size; i++) data[i] *= x;
+                return *this;
+            }
+            vector<T>& operator/=(T x) { // scalar division assignment
+                for (size_t i=0; i<size; i++) data[i] /= x;
+                return *this;
+            }
+
             // Overloads the plus operator
             vector<T> operator+(const vector<T>& other) const
             {
@@ -195,7 +239,7 @@ namespace ppnm
                 }
 
                 // Initialize the result vector with the correct size
-                vector<T> result(size);  // Allocate memory upfront
+                vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
                     result[i] = data[i] + other[i];  // Directly assign to the elements
@@ -212,7 +256,7 @@ namespace ppnm
                 }
 
                 // Initialize the result vector with the correct size
-                vector<T> result(size);  // Allocate memory upfront
+                vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
                     result[i] = data[i] - other[i];  // Directly assign to the elements
@@ -223,7 +267,7 @@ namespace ppnm
             // Overloads the multiplication operator
             vector<T> operator*(const T& scalar) const
             {
-                vector<T> result(size);  // Allocate memory upfront
+                vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
                     result[i] = data[i] * scalar;  // Directly assign to the elements
@@ -239,7 +283,7 @@ namespace ppnm
                     throw std::invalid_argument("Division by 0 in vector division");
                 }
 
-                vector<T> result(size);  // Allocate memory upfront
+                vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
                     result[i] = data[i] / scalar;  // Directly assign to the elements

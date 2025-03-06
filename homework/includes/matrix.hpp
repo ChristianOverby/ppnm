@@ -20,8 +20,7 @@ namespace ppnm {
             // default constructor
             matrix() : data(nullptr), rows(0), cols(0){}
             // constructor
-            matrix(size_t rows, size_t cols) : data(new T[rows*cols]), rows(rows), cols(cols){
-                for(size_t i = 0; i<rows*cols; i++) {data[i] = T();}
+            matrix(size_t rows, size_t cols) : data(new T[rows*cols]()), rows(rows), cols(cols){
             }
             // copy constructor
             matrix(matrix<T> const& other) : data(new T[other.rows*other.cols]),rows(other.rows), cols(other.cols){
@@ -188,8 +187,6 @@ namespace ppnm {
                 for (size_t i = 1; i < rows; i++) {  // Start from row 1, since this makes sense.
                     for (size_t j = 0; j < std::min(i, cols); j++) {  // Only check below the diagonal (i, j)
                         if (!ppnm::approx(data[i * cols + j], T())) {
-                            std::cout << "\n Nonzero below diagonal at (" << i << ", " << j 
-                          << "): " << data[i * cols + j] << std::endl;
                             return false;  // Found a nonzero element below the diagonal
                         }
                     }
@@ -228,7 +225,7 @@ namespace ppnm {
                 assert(cols == vec.getSize() && "rows in matrix and size of vector should be the same.");
                 
                 // Initialize the result vector with the correct size (rows of the matrix)
-                ppnm::vector<T> tempVec(rows);  // Allocate memory upfront for the resulting vector
+                ppnm::vector<T> tempVec(rows, false);  // Allocate memory upfront for the resulting vector
 
                 for (size_t i = 0; i < rows; i++) 
                 {
@@ -246,10 +243,11 @@ namespace ppnm {
             ppnm::matrix<T> operator*(const ppnm::matrix<T>& other) const 
             {
                 assert(cols == other.getRows() && "rows in matrix and size of vector should be the same.");
-                ppnm::matrix<T> tempMat(rows, other.getCols());
+                size_t colholder = other.getCols();
+                ppnm::matrix<T> tempMat(rows, colholder);
                 for (size_t i = 0; i < rows; i++) 
                 {
-                    for (size_t j = 0; j < other.getCols(); j++) 
+                    for (size_t j = 0; j < colholder; j++) 
                     {
                         T sum = 0;
                         for (size_t k = 0; k < cols; k++) // Iterate over shared dimension
@@ -258,7 +256,7 @@ namespace ppnm {
                         }
                         tempMat(i, j) = sum; // Assign result
                     }
-                }
+                } 
                 return tempMat;
             }
 
@@ -307,7 +305,7 @@ namespace ppnm {
             ppnm::vector<T> operator[](const size_t& c)
             {
                 // Initialize the result vector with the correct size (rows of the matrix)
-                ppnm::vector<T> temp(rows);  // Allocate memory upfront for the resulting column vector
+                ppnm::vector<T> temp(rows, false);  // Allocate memory upfront for the resulting column vector
                 for (size_t i = 0; i < rows; i++)
                 {
                     temp[i] = data[i * cols + c];  // Direct assignment to the vector element
@@ -319,7 +317,7 @@ namespace ppnm {
             const ppnm::vector<T> operator[](const size_t& c) const
             {
                 // Initialize the result vector with the correct size (rows of the matrix)
-                ppnm::vector<T> temp(rows);  // Allocate memory upfront for the resulting column vector
+                ppnm::vector<T> temp(rows, false);  // Allocate memory upfront for the resulting column vector
                 for (size_t i = 0; i < rows; i++)
                 {
                     temp[i] = data[i * cols + c];  // Direct assignment to the vector element

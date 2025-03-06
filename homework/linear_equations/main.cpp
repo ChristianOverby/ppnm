@@ -16,19 +16,19 @@ int main(int argc, char* arg[])
         str = arg[i];
         if(str == "--runUnitTest" || str == "-rut") {
             std::cout << "\nDoing one testQRGSdecomp verbose test:" << std::endl;
-        ppnm::testQRGSdecomp(1, true);
-        std::cout << "\nTesting QR decomp on 500 0-20 x 0-20 matricies" << std::endl;
-        ppnm::testQRGSdecomp(500);
-        
-        std::cout << "\nDoing one testQRGSsolve verbose test:" << std::endl;
-        ppnm::testQRGSsolve(1, true);
-        std::cout << "\nTesting solve on 500 0-20 x 0-20 matricies and 0-20 vector" << std::endl;
-        ppnm::testQRGSsolve(500);
+            ppnm::testQRGSdecomp(1, true);
+            std::cout << "\nTesting QR decomp on 500 0-20 x 0-20 matricies" << std::endl;
+            ppnm::testQRGSdecomp(500);
+            
+            std::cout << "\nDoing one testQRGSsolve verbose test:" << std::endl;
+            ppnm::testQRGSsolve(1, true);
+            std::cout << "\nTesting solve on 500 0-20 x 0-20 matricies and 0-20 vector" << std::endl;
+            ppnm::testQRGSsolve(500);
 
-        std::cout << "\nDoing one testQRGSinverse verbose test:" << std::endl;
-        ppnm::testQRGSinverse(1, true);
-        std::cout << "\nTesting inverse on 500 0-20 x 0-20 matricies" << std::endl;
-        ppnm::testQRGSsolve(500);
+            std::cout << "\nDoing one testQRGSinverse verbose test:" << std::endl;
+            ppnm::testQRGSinverse(1, true);
+            std::cout << "\nTesting inverse on 500 0-20 x 0-20 matricies" << std::endl;
+            ppnm::testQRGSsolve(500);
         }
         if(str == "--sizeSquare" || str == "-ssq") {
             // no error checking for more numbers. Only checks the first two inpiuts
@@ -49,7 +49,7 @@ int main(int argc, char* arg[])
                     break;
                 };
                 int rep = std::stod(matchOutput);
-                for (int i =0;i < rep; i++){
+                for (int i=0 ; i < rep; i++){
                     ppnm::matrix<double> matrix(m,m); matrix = matrix.randomizedMatrix(0, 100);
                     ppnm::QRGS<double> matrixQRdecomposed(matrix);
                     }
@@ -59,7 +59,7 @@ int main(int argc, char* arg[])
 
     
 
-    ppnm::matrix<double> matrix(6,6); matrix = matrix.randomizedMatrix(0, 100);
+    ppnm::matrix<double> matrix(800,800); matrix = matrix.randomizedMatrix(0, 100);
     ppnm::QRGS<double> matrixQRdecomposed(matrix);
     return 0;
 }

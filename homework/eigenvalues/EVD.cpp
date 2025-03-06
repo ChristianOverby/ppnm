@@ -66,7 +66,7 @@ namespace ppnm {
         ppnm::vector<ppnm::matrix<double>> AV_vec(2);
         AV_vec[0] = A;
         AV_vec[1] = V;
-
+        
         return AV_vec;
     }
 
