@@ -32,10 +32,10 @@ template <typename T> struct QRGS {
   ppnm::vector<T> solve(ppnm::vector<T> b) {
     // y = Q^T * b
     ppnm::vector<T> y = Q.transpose()*b;
-    ppnm::vector<T> x(y.getSize());
+    ppnm::vector<T> x(y.size);
     //std::cout << x << std::endl;
-    size_t i = y.getSize(); // size of vector, e.g. 3
-    size_t m = y.getSize(); // numver of cols, e.g. 3
+    size_t i = y.size; // size of vector, e.g. 3
+    size_t m = y.size; // numver of cols, e.g. 3
     while (i-- > 0)
     {
       T sum = 0;

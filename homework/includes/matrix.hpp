@@ -97,7 +97,7 @@ namespace ppnm {
             // set a coloumn as a vector, this method was added due to the ease of GM ortho with vectors
             void setCol(size_t c, const ppnm::vector<T>& vector) 
             {
-                assert(vector.getSize() == rows && "Size of vector is not the same as rows in matrix");
+                assert(vector.size == rows && "Size of vector is not the same as rows in matrix");
                 for(size_t i = 0; i < rows; i++)    
                     {
                         data[i*cols + c] = vector[i];
@@ -222,7 +222,7 @@ namespace ppnm {
             // Matrix multiplication overload (vector)
             ppnm::vector<T> operator*(const ppnm::vector<T>& vec) const 
             {
-                assert(cols == vec.getSize() && "rows in matrix and size of vector should be the same.");
+                assert(cols == vec.size && "rows in matrix and size of vector should be the same.");
                 
                 // Initialize the result vector with the correct size (rows of the matrix)
                 ppnm::vector<T> tempVec(rows, false);  // Allocate memory upfront for the resulting vector

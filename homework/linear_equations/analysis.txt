@@ -1,11 +1,56 @@
 Flat profile:
 
 Each sample counts as 0.01 seconds.
+ no time accumulated
+
   %   cumulative   self              self     total           
- time   seconds   seconds    calls   s/call   s/call  name    
- 99.54      2.17     2.17        1     2.17     2.17  ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&)
-  0.46      2.18     0.01                             main
-  0.00      2.18     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00      432     0.00     0.00  ppnm::vector<double>::operator[](unsigned long)
+  0.00      0.00     0.00      216     0.00     0.00  ppnm::vector<double>::operator[](unsigned long) const
+  0.00      0.00     0.00      108     0.00     0.00  ppnm::vector<double>::vector(unsigned long, bool)
+  0.00      0.00     0.00      108     0.00     0.00  ppnm::vector<double>::~vector()
+  0.00      0.00     0.00       72     0.00     0.00  ppnm::matrix<double>::operator[](unsigned long const&)
+  0.00      0.00     0.00       48     0.00     0.00  ppnm::matrix<double>::operator()(unsigned long, unsigned long)
+  0.00      0.00     0.00       45     0.00     0.00  ppnm::matrix<double>::getCols() const
+  0.00      0.00     0.00       36     0.00     0.00  std::abs(double)
+  0.00      0.00     0.00       21     0.00     0.00  ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&)
+  0.00      0.00     0.00       21     0.00     0.00  ppnm::vector<double>::getSize() const
+  0.00      0.00     0.00       15     0.00     0.00  ppnm::vector<double>::dot(ppnm::vector<double> const&) const
+  0.00      0.00     0.00       15     0.00     0.00  ppnm::vector<double>::operator-(ppnm::vector<double> const&) const
+  0.00      0.00     0.00       15     0.00     0.00  ppnm::vector<double>::operator*(double const&) const
+  0.00      0.00     0.00       12     0.00     0.00  bool ppnm::approx<double>(double const&, double const&, double)
+  0.00      0.00     0.00       12     0.00     0.00  double const& std::max<double>(double const&, double const&)
+  0.00      0.00     0.00        7     0.00     0.00  ppnm::matrix<double>::getRows() const
+  0.00      0.00     0.00        6     0.00     0.00  ppnm::vector<double>::magnitude() const
+  0.00      0.00     0.00        6     0.00     0.00  ppnm::vector<double>::operator/(double const&) const
+  0.00      0.00     0.00        5     0.00     0.00  ppnm::matrix<double>::~matrix()
+  0.00      0.00     0.00        4     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const
+  0.00      0.00     0.00        3     0.00     0.00  ppnm::matrix<double>::matrix(unsigned long, unsigned long)
+  0.00      0.00     0.00        2     0.00     0.00  ppnm::matrix<double>::matrix(ppnm::matrix<double> const&)
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const
+  0.00      0.00     0.00        2     0.00     0.00  std::char_traits<char>::assign(char&, char const&)
+  0.00      0.00     0.00        2     0.00     0.00  std::__ptr_traits_ptr_to<char const*, char const, false>::pointer_to(char const&)
+  0.00      0.00     0.00        2     0.00     0.00  std::__ptr_traits_ptr_to<char*, char, false>::pointer_to(char&)
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&)
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider()
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data()
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long)
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long)
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string()
+  0.00      0.00     0.00        2     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()
+  0.00      0.00     0.00        2     0.00     0.00  char const* std::__addressof<char const>(char const&)
+  0.00      0.00     0.00        2     0.00     0.00  char* std::__addressof<char>(char&)
+  0.00      0.00     0.00        2     0.00     0.00  std::is_constant_evaluated()
+  0.00      0.00     0.00        2     0.00     0.00  std::__is_constant_evaluated()
+  0.00      0.00     0.00        2     0.00     0.00  std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&)
+  0.00      0.00     0.00        2     0.00     0.00  char const* std::addressof<char const>(char const&)
+  0.00      0.00     0.00        2     0.00     0.00  char* std::addressof<char>(char&)
+  0.00      0.00     0.00        1     0.00     0.00  ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&)
+  0.00      0.00     0.00        1     0.00     0.00  ppnm::QRGS<double>::~QRGS()
+  0.00      0.00     0.00        1     0.00     0.00  ppnm::matrix<double>::operator=(ppnm::matrix<double>&&)
+  0.00      0.00     0.00        1     0.00     0.00  ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -43,19 +88,204 @@ notice and this notice are preserved.
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 4 byte(s) for 0.46% of 2.18 seconds
+granularity: each sample hit covers 4 byte(s) no time propagated
 
 index % time    self  children    called     name
-                                                 <spontaneous>
-[1]    100.0    0.01    2.17                 main [1]
-                2.17    0.00       1/1           ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [2]
-                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [10]
+                0.00    0.00     432/432         ppnm::matrix<double>::operator[](unsigned long const&) [12]
+[8]      0.0    0.00    0.00     432         ppnm::vector<double>::operator[](unsigned long) [8]
 -----------------------------------------------
-                2.17    0.00       1/1           main [1]
-[2]     99.5    2.17    0.00       1         ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [2]
+                0.00    0.00      90/216         ppnm::vector<double>::operator-(ppnm::vector<double> const&) const [19]
+                0.00    0.00     126/216         ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&) [16]
+[9]      0.0    0.00    0.00     216         ppnm::vector<double>::operator[](unsigned long) const [9]
 -----------------------------------------------
-                0.00    0.00       2/2           main [1]
-[10]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [10]
+                0.00    0.00       6/108         ppnm::vector<double>::operator/(double const&) const [25]
+                0.00    0.00      15/108         ppnm::vector<double>::operator*(double const&) const [20]
+                0.00    0.00      15/108         ppnm::vector<double>::operator-(ppnm::vector<double> const&) const [19]
+                0.00    0.00      72/108         ppnm::matrix<double>::operator[](unsigned long const&) [12]
+[10]     0.0    0.00    0.00     108         ppnm::vector<double>::vector(unsigned long, bool) [10]
+-----------------------------------------------
+                0.00    0.00     108/108         ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[11]     0.0    0.00    0.00     108         ppnm::vector<double>::~vector() [11]
+-----------------------------------------------
+                0.00    0.00      72/72          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[12]     0.0    0.00    0.00      72         ppnm::matrix<double>::operator[](unsigned long const&) [12]
+                0.00    0.00     432/432         ppnm::vector<double>::operator[](unsigned long) [8]
+                0.00    0.00      72/108         ppnm::vector<double>::vector(unsigned long, bool) [10]
+-----------------------------------------------
+                0.00    0.00      48/48          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[13]     0.0    0.00    0.00      48         ppnm::matrix<double>::operator()(unsigned long, unsigned long) [13]
+-----------------------------------------------
+                0.00    0.00       3/45          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+                0.00    0.00      42/45          ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const [53]
+[14]     0.0    0.00    0.00      45         ppnm::matrix<double>::getCols() const [14]
+-----------------------------------------------
+                0.00    0.00      36/36          bool ppnm::approx<double>(double const&, double const&, double) [21]
+[15]     0.0    0.00    0.00      36         std::abs(double) [15]
+-----------------------------------------------
+                0.00    0.00      21/21          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[16]     0.0    0.00    0.00      21         ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&) [16]
+                0.00    0.00     126/216         ppnm::vector<double>::operator[](unsigned long) const [9]
+                0.00    0.00      21/21          ppnm::vector<double>::getSize() const [17]
+-----------------------------------------------
+                0.00    0.00      21/21          ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&) [16]
+[17]     0.0    0.00    0.00      21         ppnm::vector<double>::getSize() const [17]
+-----------------------------------------------
+                0.00    0.00      15/15          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[18]     0.0    0.00    0.00      15         ppnm::vector<double>::dot(ppnm::vector<double> const&) const [18]
+-----------------------------------------------
+                0.00    0.00      15/15          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[19]     0.0    0.00    0.00      15         ppnm::vector<double>::operator-(ppnm::vector<double> const&) const [19]
+                0.00    0.00      90/216         ppnm::vector<double>::operator[](unsigned long) const [9]
+                0.00    0.00      15/108         ppnm::vector<double>::vector(unsigned long, bool) [10]
+-----------------------------------------------
+                0.00    0.00      15/15          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[20]     0.0    0.00    0.00      15         ppnm::vector<double>::operator*(double const&) const [20]
+                0.00    0.00      15/108         ppnm::vector<double>::vector(unsigned long, bool) [10]
+-----------------------------------------------
+                0.00    0.00       6/12          ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+                0.00    0.00       6/12          ppnm::vector<double>::operator/(double const&) const [25]
+[21]     0.0    0.00    0.00      12         bool ppnm::approx<double>(double const&, double const&, double) [21]
+                0.00    0.00      36/36          std::abs(double) [15]
+                0.00    0.00      12/12          double const& std::max<double>(double const&, double const&) [22]
+-----------------------------------------------
+                0.00    0.00      12/12          bool ppnm::approx<double>(double const&, double const&, double) [21]
+[22]     0.0    0.00    0.00      12         double const& std::max<double>(double const&, double const&) [22]
+-----------------------------------------------
+                0.00    0.00       7/7           ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const [53]
+[23]     0.0    0.00    0.00       7         ppnm::matrix<double>::getRows() const [23]
+-----------------------------------------------
+                0.00    0.00       6/6           ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[24]     0.0    0.00    0.00       6         ppnm::vector<double>::magnitude() const [24]
+-----------------------------------------------
+                0.00    0.00       6/6           ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[25]     0.0    0.00    0.00       6         ppnm::vector<double>::operator/(double const&) const [25]
+                0.00    0.00       6/12          bool ppnm::approx<double>(double const&, double const&, double) [21]
+                0.00    0.00       6/108         ppnm::vector<double>::vector(unsigned long, bool) [10]
+-----------------------------------------------
+                0.00    0.00       2/5           main [6]
+                0.00    0.00       3/5           ppnm::QRGS<double>::~QRGS() [51]
+[26]     0.0    0.00    0.00       5         ppnm::matrix<double>::~matrix() [26]
+-----------------------------------------------
+                0.00    0.00       2/4           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [39]
+                0.00    0.00       2/4           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [30]
+[27]     0.0    0.00    0.00       4         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [27]
+-----------------------------------------------
+                0.00    0.00       1/3           main [6]
+                0.00    0.00       1/3           ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const [53]
+                0.00    0.00       1/3           ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[28]     0.0    0.00    0.00       3         ppnm::matrix<double>::matrix(unsigned long, unsigned long) [28]
+-----------------------------------------------
+                0.00    0.00       2/2           ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+[29]     0.0    0.00    0.00       2         ppnm::matrix<double>::matrix(ppnm::matrix<double> const&) [29]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [35]
+[30]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [30]
+                0.00    0.00       2/4           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [27]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [31]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [30]
+[31]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [31]
+                0.00    0.00       2/2           std::__ptr_traits_ptr_to<char const*, char const, false>::pointer_to(char const&) [33]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [39]
+[32]     0.0    0.00    0.00       2         std::char_traits<char>::assign(char&, char const&) [32]
+                0.00    0.00       2/2           std::__is_constant_evaluated() [46]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [31]
+[33]     0.0    0.00    0.00       2         std::__ptr_traits_ptr_to<char const*, char const, false>::pointer_to(char const&) [33]
+                0.00    0.00       2/2           char const* std::addressof<char const>(char const&) [48]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [38]
+[34]     0.0    0.00    0.00       2         std::__ptr_traits_ptr_to<char*, char, false>::pointer_to(char&) [34]
+                0.00    0.00       2/2           char* std::addressof<char>(char&) [49]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [42]
+[35]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [35]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [30]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [41]
+[36]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [36]
+                0.00    0.00       2/2           std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [47]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [42]
+[37]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider() [37]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [41]
+[38]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [38]
+                0.00    0.00       2/2           std::__ptr_traits_ptr_to<char*, char, false>::pointer_to(char&) [34]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [41]
+[39]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [39]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [40]
+                0.00    0.00       2/4           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [27]
+                0.00    0.00       2/2           std::char_traits<char>::assign(char&, char const&) [32]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [39]
+[40]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [40]
+-----------------------------------------------
+                0.00    0.00       2/2           main [6]
+[41]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [41]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [38]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [36]
+                0.00    0.00       2/2           std::is_constant_evaluated() [45]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [39]
+-----------------------------------------------
+                0.00    0.00       2/2           main [6]
+[42]     0.0    0.00    0.00       2         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [42]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider() [37]
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [35]
+-----------------------------------------------
+                0.00    0.00       2/2           char const* std::addressof<char const>(char const&) [48]
+[43]     0.0    0.00    0.00       2         char const* std::__addressof<char const>(char const&) [43]
+-----------------------------------------------
+                0.00    0.00       2/2           char* std::addressof<char>(char&) [49]
+[44]     0.0    0.00    0.00       2         char* std::__addressof<char>(char&) [44]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [41]
+[45]     0.0    0.00    0.00       2         std::is_constant_evaluated() [45]
+-----------------------------------------------
+                0.00    0.00       2/2           std::char_traits<char>::assign(char&, char const&) [32]
+[46]     0.0    0.00    0.00       2         std::__is_constant_evaluated() [46]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [36]
+[47]     0.0    0.00    0.00       2         std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [47]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__ptr_traits_ptr_to<char const*, char const, false>::pointer_to(char const&) [33]
+[48]     0.0    0.00    0.00       2         char const* std::addressof<char const>(char const&) [48]
+                0.00    0.00       2/2           char const* std::__addressof<char const>(char const&) [43]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__ptr_traits_ptr_to<char*, char, false>::pointer_to(char&) [34]
+[49]     0.0    0.00    0.00       2         char* std::addressof<char>(char&) [49]
+                0.00    0.00       2/2           char* std::__addressof<char>(char&) [44]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[50]     0.0    0.00    0.00       1         ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [50]
+                0.00    0.00     108/108         ppnm::vector<double>::~vector() [11]
+                0.00    0.00      72/72          ppnm::matrix<double>::operator[](unsigned long const&) [12]
+                0.00    0.00      48/48          ppnm::matrix<double>::operator()(unsigned long, unsigned long) [13]
+                0.00    0.00      21/21          ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&) [16]
+                0.00    0.00      15/15          ppnm::vector<double>::dot(ppnm::vector<double> const&) const [18]
+                0.00    0.00      15/15          ppnm::vector<double>::operator*(double const&) const [20]
+                0.00    0.00      15/15          ppnm::vector<double>::operator-(ppnm::vector<double> const&) const [19]
+                0.00    0.00       6/6           ppnm::vector<double>::magnitude() const [24]
+                0.00    0.00       6/12          bool ppnm::approx<double>(double const&, double const&, double) [21]
+                0.00    0.00       6/6           ppnm::vector<double>::operator/(double const&) const [25]
+                0.00    0.00       3/45          ppnm::matrix<double>::getCols() const [14]
+                0.00    0.00       2/2           ppnm::matrix<double>::matrix(ppnm::matrix<double> const&) [29]
+                0.00    0.00       1/3           ppnm::matrix<double>::matrix(unsigned long, unsigned long) [28]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[51]     0.0    0.00    0.00       1         ppnm::QRGS<double>::~QRGS() [51]
+                0.00    0.00       3/5           ppnm::matrix<double>::~matrix() [26]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[52]     0.0    0.00    0.00       1         ppnm::matrix<double>::operator=(ppnm::matrix<double>&&) [52]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[53]     0.0    0.00    0.00       1         ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const [53]
+                0.00    0.00      42/45          ppnm::matrix<double>::getCols() const [14]
+                0.00    0.00       7/7           ppnm::matrix<double>::getRows() const [23]
+                0.00    0.00       1/3           ppnm::matrix<double>::matrix(unsigned long, unsigned long) [28]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -148,4 +378,19 @@ notice and this notice are preserved.
 
 Index by function name
 
-   [2] ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [10] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [1] main
+  [50] ppnm::QRGS<double>::QRGS(ppnm::matrix<double> const&) [18] ppnm::vector<double>::dot(ppnm::vector<double> const&) const [38] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data()
+  [51] ppnm::QRGS<double>::~QRGS() [17] ppnm::vector<double>::getSize() const [39] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long)
+  [21] bool ppnm::approx<double>(double const&, double const&, double) [24] ppnm::vector<double>::magnitude() const [40] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long)
+  [16] ppnm::matrix<double>::setCol(unsigned long, ppnm::vector<double> const&) [25] ppnm::vector<double>::operator/(double const&) const [41] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string()
+  [29] ppnm::matrix<double>::matrix(ppnm::matrix<double> const&) [9] ppnm::vector<double>::operator[](unsigned long) const [42] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()
+  [28] ppnm::matrix<double>::matrix(unsigned long, unsigned long) [19] ppnm::vector<double>::operator-(ppnm::vector<double> const&) const [43] char const* std::__addressof<char const>(char const&)
+  [26] ppnm::matrix<double>::~matrix() [20] ppnm::vector<double>::operator*(double const&) const [44] char* std::__addressof<char>(char&)
+  [52] ppnm::matrix<double>::operator=(ppnm::matrix<double>&&) [30] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [45] std::is_constant_evaluated()
+  [13] ppnm::matrix<double>::operator()(unsigned long, unsigned long) [31] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [46] std::__is_constant_evaluated()
+  [12] ppnm::matrix<double>::operator[](unsigned long const&) [27] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [15] std::abs(double)
+  [10] ppnm::vector<double>::vector(unsigned long, bool) [32] std::char_traits<char>::assign(char&, char const&) [22] double const& std::max<double>(double const&, double const&)
+  [11] ppnm::vector<double>::~vector() [33] std::__ptr_traits_ptr_to<char const*, char const, false>::pointer_to(char const&) [47] std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&)
+   [8] ppnm::vector<double>::operator[](unsigned long) [34] std::__ptr_traits_ptr_to<char*, char, false>::pointer_to(char&) [48] char const* std::addressof<char const>(char const&)
+  [53] ppnm::matrix<double>::randomizedMatrix(int const&, int const&) const [35] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [49] char* std::addressof<char>(char&)
+  [14] ppnm::matrix<double>::getCols() const [36] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&)
+  [23] ppnm::matrix<double>::getRows() const [37] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider()

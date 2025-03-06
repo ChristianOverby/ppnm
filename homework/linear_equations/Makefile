@@ -2,7 +2,7 @@
 
 # Compiler: Specify the C++ compiler to use (g++ in this case) if needed.
 # clang maybe
-CXX = g++ -O3 -ffast-math
+CXX = g++
 
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler w	arnings to catch potential issues
@@ -61,7 +61,7 @@ plot.benchmark.svg : $(PLOT_DATA_OUTPUT)
 REPETITIONS = 1
 $(PLOT_DATA_OUTPUT): $(TARGET)
 	> $@
-	for N in $$(seq 0 3 300); do \
+	for N in $$(seq 60 20 400); do \
 		time --format="$$N %e" --output=$@ --append ./$(TARGET) -ssq $$N,$(REPETITIONS); \
 	done
 

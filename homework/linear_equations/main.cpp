@@ -59,7 +59,7 @@ int main(int argc, char* arg[])
 
     
 
-    ppnm::matrix<double> matrix(800,800); matrix = matrix.randomizedMatrix(0, 100);
-    ppnm::QRGS<double> matrixQRdecomposed(matrix);
+    // ppnm::matrix<double> matrix(300,300); matrix = matrix.randomizedMatrix(0, 100);
+    // ppnm::QRGS<double> matrixQRdecomposed(matrix);
     return 0;
 }

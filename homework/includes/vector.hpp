@@ -11,13 +11,11 @@ namespace ppnm
 
     template<typename T>
     class vector 
-    {
-        private: 
+    { 
+            public:
             T* data = nullptr;
             size_t size = 0;
             size_t capacity = 0;    
-
-        public:
             // Default constructor
             vector() : data(nullptr), size(0), capacity(0) {}
             // other constructors
@@ -152,10 +150,6 @@ namespace ppnm
 
                 size = 0;
             }
-            // size of vector
-            size_t getSize() const{
-                return size;
-            }
             // dot product
             T dot(const vector<T>& v) const 
             {
@@ -242,7 +236,7 @@ namespace ppnm
                 vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result[i] = data[i] + other[i];  // Directly assign to the elements
+                    result.data[i] = data[i] + other[i];  // Directly assign to the elements
                 }
                 return result;
             }
@@ -259,7 +253,7 @@ namespace ppnm
                 vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result[i] = data[i] - other[i];  // Directly assign to the elements
+                    result.data[i] = data[i] - other[i];  // Directly assign to the elements
                 }
                 return result;
             }
@@ -270,7 +264,7 @@ namespace ppnm
                 vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result[i] = data[i] * scalar;  // Directly assign to the elements
+                    result.data[i] = data[i] * scalar;  // Directly assign to the elements
                 }
                 return result;
             }
@@ -286,13 +280,13 @@ namespace ppnm
                 vector<T> result(size, false);  // Allocate memory upfront
                 for (size_t i = 0; i < size; i++)
                 {
-                    result[i] = data[i] / scalar;  // Directly assign to the elements
+                    result.data[i] = data[i] / scalar;  // Directly assign to the elements
                 }
                 return result;
             }
 
             bool operator==(const vector& vec) const {
-                if(vec.getSize() != size) {
+                if(vec.size != size) {
                     return false;
                 }
                 for (size_t i =0; i < size; i++) {
