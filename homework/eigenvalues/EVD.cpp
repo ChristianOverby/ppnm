@@ -1,53 +1,56 @@
 #include "EVD.hpp"
+#include "../includes/matrix.hpp"
 #include <cmath>
+#include<iostream>
 
-namespace ppnm {
+namespace pp {
 
-    EVD::EVD(const ppnm::matrix<double>& M) : w(M.getCols()), V(M.identity())
+    EVD::EVD(const pp::matrix& M) : w(M.size2())
     {
-        ppnm::matrix<double> A = M;
+        V = pp::matrix::identity(M.size2());
+        pp::matrix A = M;
 
         // Apply Jacobi rotations using the cyclic method
-        ppnm::vector<ppnm::matrix<double>> AV_vec = cyclic(A);
+        std::pair<pp::matrix, pp::matrix> AV_vec = cyclic(A);
         
         // Extract the diagonalized matrix and eigenvector matrix
-        A = AV_vec[0]; // The transformed matrix (should be diagonal)
-        V = AV_vec[1]; // The eigenvector matrix
+        A = AV_vec.first; // The transformed matrix (should be diagonal)
+        V = AV_vec.second; // The eigenvector matrix
 
         // Copy diagonal elements into the w vector (these are the eigenvalues)
-        for (size_t i = 0; i < A.getCols(); i++) {
-            w[i] = A(i, i);
+        for (int i = 0; i < A.size2(); i++) {
+            w.data[i] = A[i, i];
         }
         }
     
-    void EVD::timesJ(ppnm::matrix<double>& A, int p, int q, double theta)
+    void EVD::timesJ(pp::matrix& A, int p, int q, double theta)
     {
         double c=std::cos(theta),s=std::sin(theta);
-        for(size_t i=0;i < A.getCols();i++){
+        for(int i=0;i < A.size2();i++){
             double aip=A(i,p),aiq=A(i,q);
-            A(i,p)=c*aip-s*aiq;
-            A(i,q)=s*aip+c*aiq;
+            A[i,p]=c*aip-s*aiq;
+            A[i,q]=s*aip+c*aiq;
             }
     }
     
-    void EVD::Jtimes(ppnm::matrix<double>& A, int p, int q, double theta)
+    void EVD::Jtimes(pp::matrix& A, int p, int q, double theta)
     {
         double c=std::cos(theta),s=std::sin(theta);
-        for(size_t j=0;j<A.getCols();j++){
+        for(int j=0;j<A.size2();j++){
             double apj=A(p,j),aqj=A(q,j);
             A(p,j)= c*apj+s*aqj;
             A(q,j)=-s*apj+c*aqj;
             }
     }
     
-    ppnm::vector<ppnm::matrix<double>> EVD::cyclic(ppnm::matrix<double>& A)
+    std::pair<pp::matrix, pp::matrix> EVD::cyclic(pp::matrix& A)
     {
-        size_t n = A.getCols();
+        int n = A.size2();
         bool changed;
         do{
             changed=false;
-            for(size_t p = 0 ; p < n-1 ; p++)
-            for(size_t q = p+1 ; q<n ; q++){
+            for(int p = 0 ; p < n-1 ; p++)
+            for(int q = p+1 ; q<n ; q++){
                 double apq = A(p,q), app=A(p,p), aqq=A(q,q);
                 double theta = 0.5*std::atan2(2*apq,aqq-app);
                 double c = std::cos(theta), s = std::sin(theta);
@@ -63,9 +66,9 @@ namespace ppnm {
             }
         }while(changed);
         
-        ppnm::vector<ppnm::matrix<double>> AV_vec(2);
-        AV_vec[0] = A;
-        AV_vec[1] = V;
+        std::pair<pp::matrix, pp::matrix> AV_vec;
+        AV_vec.first = A;
+        AV_vec.second = V;
         
         return AV_vec;
     }

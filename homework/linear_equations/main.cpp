@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tests.hpp"
 #include "QRGS.hpp"
+#include <string>
 #include <regex>
 #include "../includes/matrix.hpp"
 
@@ -16,19 +17,19 @@ int main(int argc, char* arg[])
         str = arg[i];
         if(str == "--runUnitTest" || str == "-rut") {
             std::cout << "\nDoing one testQRGSdecomp verbose test:" << std::endl;
-            ppnm::testQRGSdecomp(1, true);
-            std::cout << "\nTesting QR decomp on 500 0-20 x 0-20 matricies" << std::endl;
-            ppnm::testQRGSdecomp(500);
+            pp::testQRGSdecomp(1, true);
+            std::cout << "\nTesting QR decomp on 2000 0-20 x 0-20 matricies" << std::endl;
+            pp::testQRGSdecomp(2000);
             
             std::cout << "\nDoing one testQRGSsolve verbose test:" << std::endl;
-            ppnm::testQRGSsolve(1, true);
-            std::cout << "\nTesting solve on 500 0-20 x 0-20 matricies and 0-20 vector" << std::endl;
-            ppnm::testQRGSsolve(500);
+            pp::testQRGSsolve(1, true);
+            std::cout << "\nTesting solve on 2000 0-20 x 0-20 matricies and 0-20 vector" << std::endl;
+            pp::testQRGSsolve(2000);
 
             std::cout << "\nDoing one testQRGSinverse verbose test:" << std::endl;
-            ppnm::testQRGSinverse(1, true);
-            std::cout << "\nTesting inverse on 500 0-20 x 0-20 matricies" << std::endl;
-            ppnm::testQRGSsolve(500);
+            pp::testQRGSinverse(1, true);
+            std::cout << "\nTesting inverse on 2000 0-20 x 0-20 matricies" << std::endl;
+            pp::testQRGSsolve(2000);
         }
         if(str == "--sizeSquare" || str == "-ssq") {
             // no error checking for more numbers. Only checks the first two inpiuts
@@ -50,8 +51,8 @@ int main(int argc, char* arg[])
                 };
                 int rep = std::stod(matchOutput);
                 for (int i=0 ; i < rep; i++){
-                    ppnm::matrix<double> matrix(m,m); matrix = matrix.randomizedMatrix(0, 100);
-                    ppnm::QRGS<double> matrixQRdecomposed(matrix);
+                    pp::matrix matrix = pp::matrix::rndMatrix(m,m);
+                    pp::QRGS matrixQRdecomposed(matrix);
                     }
                 }
         }

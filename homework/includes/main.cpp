@@ -1,43 +1,33 @@
 #include "matrix.hpp"
 #include "vmatrix.hpp"
-#include "vector.hpp"
 #include <iostream> 
 
 int main() 
 {
-    ppnm::matrix<double> A(2,2);
-    ppnm::matrix<double> B(20, 20);
-    ppnm::vector<double> M;
-    M.add(1.0);
-    M.add(2.0);
-    M.add(3.0);
-    std::cout << "M = \n" << M << std::endl;
-    M.remove(2);
-    std::cout << "M = \n" << M << std::endl;
-    std::cout << "A = \n" << A << std::endl;
-    std::cout << "B = \n" << B << std::endl;
+    pp::matrix A(2,2);
+    pp::matrix B(20, 20);
+    pp::vector M(3);
+    M[0] = 1.0;
+    M[1] = 2.0;
+    M[2] = 3.0;
     // copy assignment of A to B
     B = A;
     std::cout << "B = A = \n" << B << std::endl;
 
     // copy constructor of C from A
-    ppnm::matrix<double> C(A);
+    pp::matrix C(A);
     std::cout << "copy constructor of C from A " << "\n" << "C = A = \n" << C << std::endl;
 
     // move constructor of D from A without std::move
-    ppnm::matrix<double> D(std::move(A));
+    pp::matrix D(std::move(A));
     std::cout << "move constructor of D from A " << "\n" << "D = A = \n" << D << std::endl;    
 
     std::cout << "A = \n" << A << std::endl;
 
-    // delete vector A
-    A.~matrix();
-    std::cout << "A deleted" << std::endl;
-
-    B(0, 0) = 1;
+    B[0, 0] = 1;
     std::cout << "B(0,0) = 1 = \n" << B << std::endl;
 
-    B.set(0,1,2);
+    B[0,1] = 2;
     std::cout << "B.set(0,1,2) = \n" << B << std::endl;
     // iterate over 
 
@@ -59,8 +49,8 @@ int main()
     F = E;
     std::cout << "F = E = \n" << F << std::endl;
     E(1,0) = 2;
-    E.set(1,1,5);
     std::cout << "E(1,0) = 2 = \n" << E << std::endl;
+    E.set(1,1,5);
     std::cout << "E.set(1,1,5) = \n" << E << std::endl;
 
 
@@ -71,7 +61,7 @@ int main()
     double start = clock();
     for(size_t i = 0; i < 1e5; i++)
     {
-        ppnm::matrix<double> H(2,2);
+        pp::matrix H(2,2);
         for (size_t j = 0; j < 4; j++)
         {
             H(j/2, j%2) = rand() % 100;
@@ -111,35 +101,35 @@ int main()
     }
     end = clock();
 
-    std::cout << "Time taken to create 1e5 vmatrices and add them: " << (end-start)/CLOCKS_PER_SEC << " seconds" << std::endl;
+    std::cout << "Time taken to create 1e5 vmatrices and push_back them: " << (end-start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 
     // timing of creating 2 1e5 matrices with random values and adding them
     start = clock();
     for(size_t i = 0; i < 1e5; i++)
     {
-        ppnm::matrix<double> H(2,2);
-        ppnm::matrix<double> I(2,2);
+        pp::matrix H(2,2);
+        pp::matrix I(2,2);
         for (size_t j = 0; j < 4; j++)
         {
             H(j/2, j%2) = rand() % 100;
             I(j/2, j%2) = rand() % 100;
         }
-        ppnm::matrix<double> J = H+I;
+        pp::matrix J = H+I;
         if (i == 1e5-1) std::cout << "J = \n" << J << std::endl;
     }
     end = clock();
 
-    std::cout << "Time taken to create 1e5 matrices and add them: " << (end-start)/CLOCKS_PER_SEC << " seconds" << std::endl;
+    std::cout << "Time taken to create 1e5 matrices and push_back them: " << (end-start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 
     std::cout << "using vmatrix is slower so i will not implement any more to this class" << std::endl; 
 
-    B.identity();
+    B = pp::matrix::identity(B.size1());
 
     std::cout << "Convert B to identity matrix = \n" << B << std::endl;
 
-    B = ppnm::matrix<double>(10,10);
+    B = pp::matrix(10,10);
     B(9,0) = 1;
-    B = B.identity();
+    B = pp::matrix::identity(B.size1());
 
     std::cout << "Convert B to 10x10 matrix and then to to identity matrix = \n" << B << std::endl;
 
@@ -151,7 +141,7 @@ int main()
 
     std::cout << "Set the +1 offset diagonal of B to 1 \n" << B << std::endl;
 
-    ppnm::matrix<double> mat(3, 3);   // Create a 3x3 matrix
+    pp::matrix mat(3, 3);   // Create a 3x3 matrix
     mat.set(0, 0, 1);
     mat.set(1, 1, 2);
     mat.set(0, 2, 3);
@@ -161,23 +151,21 @@ int main()
     std::cout << "Is matrix upper trianular? " << (mat.upperTriangular() ? "Yes" : "No") << std::endl;
     std::cout << "Is matrix lower trianular? " << (mat.lowerTriangular() ? "Yes" : "No") << "\n" << std::endl;
 
-    ppnm::matrix<double> transposed = mat.transpose();  // Transpose the matrix
+    pp::matrix transposed = mat.transpose();  // Transpose the matrix
 
     std::cout << "Transpose said matrix \n" << transposed;
 
     std::cout << "Is transposed matrix upper trianular? " << (transposed.upperTriangular() ? "Yes" : "No") << std::endl;
     std::cout << "Is transposed matrix lower trianular? " << (transposed.lowerTriangular() ? "Yes" : "No") << "\n" << std::endl;
 
-     M.add(4);
-
     std::cout << "transposed matrix and M vector: \nmatrix = \n" << transposed << "\nM = \n" << M << std::endl;
 
-    transposed.setCol(2, M);
+    transposed[2] = (M);
 
     std::cout << "transposed matrix has vector M inserted at col 3: \n" << transposed << std::endl;
 
-    transposed.setCol(1, M);
-    transposed.setCol(0, M);
+    transposed[1] = M;
+    transposed[0] = M;
 
     std::cout << "transposed matrix has vector M inserted at all col: \n" << transposed << std::endl;
 

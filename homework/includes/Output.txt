@@ -1,69 +1,38 @@
-M = 
-1 2 3 
-M = 
-1 2 
-A = 
-0 0
-0 0
-
-B = 
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-
 B = A = 
-0 0
-0 0
+0 0 
+0 0 
 
 copy constructor of C from A 
 C = A = 
-0 0
-0 0
+0 0 
+0 0 
 
 move constructor of D from A 
 D = A = 
-0 0
-0 0
+0 0 
+0 0 
 
 A = 
 
-A deleted
 B(0,0) = 1 = 
-1 0
-0 0
+1 0 
+0 0 
 
 B.set(0,1,2) = 
-1 2
-0 0
+1 2 
+0 0 
 
 C = B + B = 
-2 4
-0 0
+2 4 
+0 0 
 
 C = C - B = 
-1 2
-0 0
+1 2 
+0 0 
 
 C = B*2 = 
-2 4
-0 0
+2 4 
+0 0 
 
 E = 
 0 0
@@ -97,7 +66,7 @@ F = E =
 
 E(1,0) = 2 = 
 0 0
-2 5
+2 0
 
 E.set(1,1,5) = 
 0 0
@@ -108,95 +77,96 @@ G = F - E =
 -2 -5
 
 H = 
-25 98
-21 34
+25 98 
+21 34 
 
-Time taken to create 1e5 matrices: 0.00529 seconds
+Time taken to create 1e5 matrices: 0.039262 seconds
 H = 
 14 92
 42 81
 
-Time taken to create 1e5 vmatrices: 0.006385 seconds
+Time taken to create 1e5 vmatrices: 0.014542 seconds
 J = 
 58 63
 158 121
 
-Time taken to create 1e5 vmatrices and add them: 0.01848 seconds
+Time taken to create 1e5 vmatrices and push_back them: 0.038588 seconds
 J = 
-116 114
-88 96
+116 114 
+88 96 
 
-Time taken to create 1e5 matrices and add them: 0.015014 seconds
+Time taken to create 1e5 matrices and push_back them: 0.10952 seconds
 using vmatrix is slower so i will not implement any more to this class
 Convert B to identity matrix = 
-1 2
-0 0
+1 0 
+0 1 
 
 Convert B to 10x10 matrix and then to to identity matrix = 
-1 0 0 0 0 0 0 0 0 0
-0 1 0 0 0 0 0 0 0 0
-0 0 1 0 0 0 0 0 0 0
-0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0
-0 0 0 0 0 1 0 0 0 0
-0 0 0 0 0 0 1 0 0 0
-0 0 0 0 0 0 0 1 0 0
-0 0 0 0 0 0 0 0 1 0
-0 0 0 0 0 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 
+0 1 0 0 0 0 0 0 0 0 
+0 0 1 0 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 0 0 
+0 0 0 0 0 1 0 0 0 0 
+0 0 0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 1 0 
+0 0 0 0 0 0 0 0 0 1 
 
 Set the main diagonal of B to 9 
-9 0 0 0 0 0 0 0 0 0
-0 9 0 0 0 0 0 0 0 0
-0 0 9 0 0 0 0 0 0 0
-0 0 0 9 0 0 0 0 0 0
-0 0 0 0 9 0 0 0 0 0
-0 0 0 0 0 9 0 0 0 0
-0 0 0 0 0 0 9 0 0 0
-0 0 0 0 0 0 0 9 0 0
-0 0 0 0 0 0 0 0 9 0
-0 0 0 0 0 0 0 0 0 9
+9 0 0 0 0 0 0 0 0 0 
+0 9 0 0 0 0 0 0 0 0 
+0 0 9 0 0 0 0 0 0 0 
+0 0 0 9 0 0 0 0 0 0 
+0 0 0 0 9 0 0 0 0 0 
+0 0 0 0 0 9 0 0 0 0 
+0 0 0 0 0 0 9 0 0 0 
+0 0 0 0 0 0 0 9 0 0 
+0 0 0 0 0 0 0 0 9 0 
+0 0 0 0 0 0 0 0 0 9 
 
 Set the +1 offset diagonal of B to 1 
-0 1 0 0 0 0 0 0 0 0
-0 0 1 0 0 0 0 0 0 0
-0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0
-0 0 0 0 0 1 0 0 0 0
-0 0 0 0 0 0 1 0 0 0
-0 0 0 0 0 0 0 1 0 0
-0 0 0 0 0 0 0 0 1 0
-0 0 0 0 0 0 0 0 0 1
-0 0 0 0 0 0 0 0 0 0
+0 1 0 0 0 0 0 0 0 0 
+0 0 1 0 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 0 0 
+0 0 0 0 0 1 0 0 0 0 
+0 0 0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 1 0 
+0 0 0 0 0 0 0 0 0 1 
+0 0 0 0 0 0 0 0 0 0 
 
 create and fill 3x3 matrix
-1 0 3
-0 2 0
-0 0 0
+1 0 3 
+0 2 0 
+0 0 0 
 Is matrix upper trianular? Yes
 Is matrix lower trianular? No
 
 Transpose said matrix 
-1 0 0
-0 2 0
-3 0 0
+1 0 0 
+0 2 0 
+3 0 0 
 Is transposed matrix upper trianular? No
 Is transposed matrix lower trianular? Yes
 
 transposed matrix and M vector: 
 matrix = 
-1 0 0
-0 2 0
-3 0 0
+1 0 0 
+0 2 0 
+3 0 0 
 
 M = 
-1 2 4 
+1 2 3 
+
 transposed matrix has vector M inserted at col 3: 
-1 0 1
-0 2 2
-3 0 4
+1 0 1 
+0 2 2 
+3 0 3 
 
 transposed matrix has vector M inserted at all col: 
-1 1 1
-2 2 2
-4 4 4
+1 1 1 
+2 2 2 
+3 3 3 
 

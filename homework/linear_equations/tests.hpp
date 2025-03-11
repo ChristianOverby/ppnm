@@ -2,7 +2,7 @@
 #define TESTS_HF
 
 
-namespace ppnm {
+namespace pp {
 
     void testQRGSdecomp(const int& repetitions, const bool& printOut = false);
 

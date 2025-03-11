@@ -2,21 +2,22 @@
 #define HYDROGEN_HF
 
 #include "../includes/matrix.hpp"
-#include "../includes/vector.hpp"
 
-namespace ppnm {
+namespace pp {
 
     struct hydrogenSchrodinger {
         int pointCount;
         double rmax, dr;
-        ppnm::matrix<double> H;
-        ppnm::vector<double> r;
+        pp::matrix H;
+        pp::vector r;
 
         hydrogenSchrodinger(double rmax, double dr);
         
         void solve();
-        void wavefunctions();
-        void convergence();
+        void convergenceDeltaR();
+        static void convergenceDeltaRparallel(double dr_p);
+        void convergenceDeltaRmax();
+        static void convergenceDeltaRmaxparallel(double drmax_p);
         void hamiltonian();
     };
 

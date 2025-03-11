@@ -2,20 +2,20 @@
 #define EVD_HF
 
 #include "../includes/matrix.hpp"
-#include "../includes/vector.hpp"
+#include <utility>
 
-namespace ppnm {
+namespace pp {
     class EVD{
     public:
-    ppnm::vector<double> w; // Eigenvectors
-    ppnm::matrix<double> V; // Eigenvalues
+    pp::vector w; // Eigenvectors
+    pp::matrix V; // Eigenvalues
 
-    EVD(const ppnm::matrix<double>& M);
+    EVD(const pp::matrix& M);
 
-    static void timesJ(ppnm::matrix<double>& A, int p, int q, double theta);
-    static void Jtimes(ppnm::matrix<double>& A, int p, int q, double theta);
+    void timesJ(pp::matrix& A, int p, int q, double theta);
+    void Jtimes(pp::matrix& A, int p, int q, double theta);
 
-    ppnm::vector<ppnm::matrix<double>> cyclic(ppnm::matrix<double>& A);
+    std::pair<pp::matrix, pp::matrix> cyclic(pp::matrix& A);
 
     };
 

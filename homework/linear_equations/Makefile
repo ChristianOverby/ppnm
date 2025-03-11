@@ -2,7 +2,7 @@
 
 # Compiler: Specify the C++ compiler to use (g++ in this case) if needed.
 # clang maybe
-CXX = g++
+CXX = g++ -O2
 
 # Compiler flags: Options passed to the compiler during compilation
 # -Wall: Enable all compiler w	arnings to catch potential issues
@@ -10,7 +10,7 @@ CXX = g++
 # -Wextra: Extra errors
 # -ferror-limit=1: tells the compiler to stop after encountering one error
 
-CXXFLAGS += -Wall -Wextra -std=c++23 -pg
+CXXFLAGS += -Wall -Wextra -std=c++23
 
 # Linker flags: Libraries to link against (e.g., -lm for math functions)
 # -lm → Links libm (Math library)
@@ -23,7 +23,7 @@ LDLIBS += -lm -lstdc++
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp ../includes/matrix.cpp ../includes/vector.cpp ../includes/vmatrix.cpp QRGS.cpp tests.cpp ../includes/log.cpp
+SRCS = main.cpp ../includes/matrix.cpp ../includes/vmatrix.cpp QRGS.cpp tests.cpp ../includes/log.cpp
 
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt
@@ -61,7 +61,7 @@ plot.benchmark.svg : $(PLOT_DATA_OUTPUT)
 REPETITIONS = 1
 $(PLOT_DATA_OUTPUT): $(TARGET)
 	> $@
-	for N in $$(seq 60 20 400); do \
+	for N in $$(seq 100 10 700); do \
 		time --format="$$N %e" --output=$@ --append ./$(TARGET) -ssq $$N,$(REPETITIONS); \
 	done
 

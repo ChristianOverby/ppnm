@@ -2,20 +2,17 @@
 #define vmatrix_HF
 
 #include <iostream>
-#include <string>
 #include <cassert>
 #include <sstream>
-#include "vector.hpp" // Include your custom vector class
+#include "matrix.hpp" // Include your custom vector class
 
 namespace ppnm {
 
     template <typename T>
     class vmatrix {
-    private:
-        vector<T> data; // Use your custom vector class
+        public:
+        pp::vector data;
         size_t rows, cols;
-
-    public:
         // Default constructor
         vmatrix() : data(), rows(0), cols(0) {}
 
@@ -120,12 +117,6 @@ namespace ppnm {
             }
             return data[row * cols + col];
         }
-
-        // Iterator implementation
-        T* begin() { return data.begin(); }
-        T* end() { return data.end(); }
-        const T* begin() const { return data.begin(); }
-        const T* end() const { return data.end(); }
 
         // Friend function to overload the << operator
         template <typename U>

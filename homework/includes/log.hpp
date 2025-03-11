@@ -7,7 +7,7 @@
 // Global variable to control logging
 extern bool ENABLE_LOGGING;  //extern due to no One Definition Rule warning initialized in log.cpp
 
-namespace ppnm {
+namespace pp {
 
 template <typename... Args>
 void log(bool should_print, Args&&... args) {
