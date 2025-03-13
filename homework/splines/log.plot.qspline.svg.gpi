@@ -1,0 +1,1 @@
+set terminal svg size 800,600 background 'white'; set output "plot.qspline.svg"; set grid; set xlabel 'x'; set ylabel 'y'; set title 'qspline'; set yrange [-2:2]; plot "qspline.csv" using 1:2 with linespoints title 'f(x) = cos(x)', 	 "qspline.csv" using 1:3 with linespoints title 'F(x) = sin(x)', 	 "qspline.csv" using 1:4 with linespoints title '-cos(x)'; 

@@ -1,6 +1,5 @@
 #include "lsfitter.hpp"
 #include "../linear_equations/QRGS.hpp"
-#include <iostream>
 
 namespace pp {
     std::pair<pp::vector, pp::matrix> ode_ls_fit(
