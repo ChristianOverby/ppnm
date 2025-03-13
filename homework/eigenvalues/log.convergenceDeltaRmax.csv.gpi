@@ -1,0 +1,1 @@
+set terminal svg size 800,600 background 'white'; set output "plot.convergenceDeltaRmax.svg"; set title 'ε_0 of r_{max}'; set xrange [2:12]; set xlabel 'r_{max}'; set ylabel 'ε_0'; set grid; plot 'convergenceDeltaRmax.csv' with linespoints title 'ε0 of Δrmax datapoints'; 

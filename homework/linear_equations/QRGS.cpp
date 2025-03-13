@@ -54,14 +54,12 @@ namespace pp {
       return sum;
     }
 
-  // this method uses the solve function wich requires an additional Q mulitplatication. (Could also modify solve
-  // but this would make that method unintuitive)
   pp::matrix QRGS::inverse() {
     // M = QR
     // M^-1 = R^-1 * Q^-1
     // M^-1 = R^-1 * Q^T (since Q is orthogonal)
-    assert(Q.size2() == Q.size1() && "Only solves for square matrices"); // should be square
-    size_t n = Q.size1();
+    //assert(Q.size2() == Q.size1() && "Only solves for square matrices"); // should be square
+    size_t n = Q.size2();
     pp::matrix M_inv(n, n);
 
     // Solve R * x_i = e_i for each column i
@@ -70,53 +68,14 @@ namespace pp {
         e[i] = 1; // Set the i-th entry to 1
 
         // Solve for x_i using back-substitution (which is implemented in solve)
-        pp::vector x = solve(Q*e);
+        pp::vector x = solve(e);
 
         // Store the computed inverse column in M_inv
         M_inv[i]= x;
     }
 
-    return M_inv * Q.transpose();
-}
-
-  pp::matrix QRGS::inverse2(){
-    // M = QR
-    // M^-1 = R^-1*Q^-1
-    // M^-1 = R^-1*Q^T (since Q orthongoal)
-    assert(Q.size2() == Q.size1() && "Only solves for square matricies"); // should be square
-    size_t n = Q.size1();
-
-    pp::matrix R_inv(n, n);
-    pp::matrix M_inv(n, n);
-
-    // solving R^-1 - This is really much the same as what happens during the decomposition.
-    // Since R is upper tiangular it is easy to solve for R^-1 using back substitution
-    // R^-1 * x_i = e_i 
-    for (size_t i = 0; i<n; i++) // each coloumn is looped over
-    {
-      pp::vector e(n); // the identity vector 
-      e[i] = 1; // inititalize the e vector to be the actual identity vector
-      pp::vector x(n); // vector to hold the solution
-      for (size_t j = n; j-- > 0;) // Now solving for R * x = e     Starts at the last row e.g. j = n-1 
-      {
-        NUMBER sum = 0.0;
-        for (size_t k = j + 1; k<n; k++) // this then loops forward summing all the terms the the rgiht of the diagonal in the j row that we are in
-        // e.g runs over all the alreadu known values of x
-        {
-          sum += R(j,k) *x[k];
-        }
-        x[j] = (e[j]-sum)/R(j,j);
-      }
-      R_inv[i] = x;
-    }
-     
-    pp::matrix Q_T = Q.transpose(); // stored in it's own variable for clairty
-
-    M_inv = R_inv * Q_T;
-
     return M_inv;
-
-  }
+}
 
   void QRGS::printMatrices() {
     std::cout << "Matrix A:\n" << A << std::endl;

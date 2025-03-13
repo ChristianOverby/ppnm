@@ -197,7 +197,9 @@
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<use xlink:href='#gpPt0' transform='translate(115.62,492.04) scale(4.50)' color='rgb(148,   0, 211)'/>
+	<path stroke='rgb(148,   0, 211)'  d='M715.48,72.01 L758.04,72.01 M115.62,492.04 L150.31,487.49 L185.01,479.98 L219.70,469.62 L254.40,456.56 L289.09,440.96
+		L323.79,423.03 L358.48,402.99 L393.18,381.07 L427.87,357.48 L462.57,332.45 L497.26,306.21 L531.96,278.97 L566.65,250.91
+		L601.35,222.23 L636.04,193.08 L670.74,163.62 L705.43,133.97 L740.13,104.27  '/>	<use xlink:href='#gpPt0' transform='translate(115.62,492.04) scale(4.50)' color='rgb(148,   0, 211)'/>
 	<use xlink:href='#gpPt0' transform='translate(150.31,487.49) scale(4.50)' color='rgb(148,   0, 211)'/>
 	<use xlink:href='#gpPt0' transform='translate(185.01,479.98) scale(4.50)' color='rgb(148,   0, 211)'/>
 	<use xlink:href='#gpPt0' transform='translate(219.70,469.62) scale(4.50)' color='rgb(148,   0, 211)'/>

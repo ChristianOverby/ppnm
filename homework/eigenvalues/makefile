@@ -48,7 +48,7 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 all: $(TARGET) parallelDeltaRmax parallelDeltaR output mergeLogs plot.eigenvalues.svg plot.convergenceDeltaR.svg plot.convergenceDeltaRmax.svg plot.convergenceDeltaRParallel.svg plot.convergenceDeltaRmaxParallel.svg
 
 plot.eigenvalues.svg : $(EIGEN_DATA)
-	gnuplot -e " \
+	echo " \
 	set terminal svg size 800,600 background 'white'; \
 	set output \"$@\"; \
 	set xlabel 'Eigenfunctions'; \
@@ -57,7 +57,7 @@ plot.eigenvalues.svg : $(EIGEN_DATA)
 	set grid; \
 	set key right; \
 	set zeroaxis; \
-	set xrange [0:40]; \
+	set xrange [0:60]; \
 	f1(x) = 2*x*exp(-x); \
 	f2(x) = -x*(1-x/2)*exp(-x/2)/sqrt(2); \
 	f3(x) = 2*x*(1-2*x/3 + 2*x*x/27)*exp(-x/3)/sqrt(27); \
@@ -70,10 +70,10 @@ plot.eigenvalues.svg : $(EIGEN_DATA)
 		 f2(x) with lines title 'ψ2-analytical', \
 		 f3(x) with lines title 'ψ3-analytical', \
 		 f4(x) with lines title 'ψ4-analytical'; \
-	" | tee log.$(EIGEN_DATA).gpi
+	" | tee log.$(EIGEN_DATA).gpi | gnuplot
 
 plot.convergenceDeltaR.svg : $(CONVERGENCE_DATA_DELTA_R)
-	gnuplot -e "\
+	echo "\
 	set terminal svg size 800,600 background 'white'; \
 	set output \"$@\"; \
 	set title 'ε0 of Δr'; \
@@ -82,11 +82,11 @@ plot.convergenceDeltaR.svg : $(CONVERGENCE_DATA_DELTA_R)
 	set grid; \
 	set yrange [-0.51:-0.41]; \
 	set xrange [0:1]; \
-	plot '$<' with points title 'ε0 of Δr datapoints'; \
-	" | tee log.$(CONVERGENCE_DATA_DELTA_R).gpi
+	plot '$<' with linespoints title 'ε0 of Δr datapoints'; \
+	" | tee log.$(CONVERGENCE_DATA_DELTA_R).gpi | gnuplot
 
 plot.convergenceDeltaRmax.svg : $(CONVERGENCE_DATA_DELTA_RMAX)
-	gnuplot -e "\
+	echo "\
 	set terminal svg size 800,600 background 'white'; \
 	set output \"$@\"; \
 	set title 'ε_0 of r_{max}'; \
@@ -94,11 +94,11 @@ plot.convergenceDeltaRmax.svg : $(CONVERGENCE_DATA_DELTA_RMAX)
 	set xlabel 'r_{max}'; \
 	set ylabel 'ε_0'; \
 	set grid; \
-	plot '$<' with points title 'ε0 of Δrmax datapoints'; \
-	" | tee log.$(CONVERGENCE_DATA_DELTA_RMAX).gpi
+	plot '$<' with linespoints title 'ε0 of Δrmax datapoints'; \
+	" | tee log.$(CONVERGENCE_DATA_DELTA_RMAX).gpi | gnuplot
 
 plot.convergenceDeltaRParallel.svg : $(CONVERGENCE_DATA_DELTA_R_PARALLEL)
-	gnuplot -e "\
+	echo "\
 	set terminal svg size 800,600 background 'white'; \
 	set output \"$@\"; \
 	set title 'ε0 of Δr'; \
@@ -108,10 +108,10 @@ plot.convergenceDeltaRParallel.svg : $(CONVERGENCE_DATA_DELTA_R_PARALLEL)
 	set yrange [-0.51:-0.41]; \
 	set xrange [0:1]; \
 	plot '$<' with points title 'ε0 of Δr datapoints'; \
-	" | tee log.$(CONVERGENCE_DATA_DELTA_R_PARALLEL).gpi
+	" | tee log.$(CONVERGENCE_DATA_DELTA_R_PARALLEL).gpi | gnuplot
 
 plot.convergenceDeltaRmaxParallel.svg : $(CONVERGENCE_DATA_DELTA_RMAX_PARALLEL)
-	gnuplot -e "\
+	echo "\
 	set terminal svg size 800,600 background 'white'; \
 	set output \"$@\"; \
 	set title 'ε_0 of r_{max}'; \
@@ -120,7 +120,7 @@ plot.convergenceDeltaRmaxParallel.svg : $(CONVERGENCE_DATA_DELTA_RMAX_PARALLEL)
 	set ylabel 'ε_0'; \
 	set grid; \
 	plot '$<' with points title 'ε0 of Δrmax datapoints'; \
-	" | tee log.$(CONVERGENCE_DATA_DELTA_RMAX_PARALLEL).gpi	
+	" | tee log.$(CONVERGENCE_DATA_DELTA_RMAX_PARALLEL).gpi	| gnuplot
 
 # Rule to run the executable and redirect the output to a file
 output : $(TARGET)

@@ -1,0 +1,1 @@
+set terminal svg size 800,600 background 'white'; set output "plot.convergenceDeltaR.svg"; set title 'ε0 of Δr'; set xlabel 'Δr'; set ylabel 'ε0'; set grid; set yrange [-0.51:-0.41]; set xrange [0:1]; plot 'convergenceDeltaR.csv' with linespoints title 'ε0 of Δr datapoints'; 

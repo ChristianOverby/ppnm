@@ -19,6 +19,11 @@ struct vector {
 	int size() const {return data.size();}
 	void resize(int n) {data.resize(n);}
 	NUMBER& operator[](int i) {return data[i];}
+	// iterator implementation
+    const auto begin() const { return data.begin(); } // first element
+    const auto end() const { return data.end(); } // one past last element per convention.
+	auto begin() { return data.begin(); } // first element
+    auto end() { return data.end(); } // one past last element per convention.
 	const NUMBER& operator[](int i) const {return data[i];}
 	vector& operator+=(const vector&);
 	vector& operator-=(const vector&);
@@ -56,6 +61,11 @@ struct matrix {
 	const NUMBER& operator[](int i, int j) const {return cols[j][i];}
 	vector& operator[](int i){return cols[i];}
 	const vector& operator[](int i) const {return cols[i];}
+	// Iterators
+    auto begin() { return cols.begin()->begin(); }
+    auto end() { return cols.back().end(); }
+    const auto begin() const { return cols.begin()->begin(); }
+    const auto end() const { return cols.back().end(); }
 //	vector get_col(int j);
 //	void set_col(int j,vector& cj);
 	matrix transpose();

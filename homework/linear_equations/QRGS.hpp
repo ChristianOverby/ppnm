@@ -20,7 +20,6 @@ namespace pp {
   NUMBER det();
   pp::matrix inverse();
   pp::matrix inverse2();
-
   pp::matrix getQ() const {return Q;}
   pp::matrix getR() const {return R;}
 
