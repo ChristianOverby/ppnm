@@ -108,7 +108,7 @@ namespace pp
         return b[i] + 2 * c[i] * dx;
     }
 
-    cspline::cspline(pp::vector xs, pp::vector ys) : x(xs), y(ys), b(xs.size()), c(xs.size()), d(xs.size()-1) {
+    cspline::cspline(pp::vector xs, pp::vector ys) : x(xs), y(ys), b(xs.size()), c(xs.size()-1), d(xs.size()-1) {
         
         int n = x.size();
 
@@ -119,33 +119,26 @@ namespace pp
             p[i] = (y[i+1] - y[i]) / h[i]; // Slope between adjacent points
             }
 
-        // Tridiagonal system setup
-        pp::vector alpha(n), beta(n), zeta(n), gamma(n);
-        alpha[0] = 0; // Not used
-        beta[0] = 2;
-        zeta[0] = 0;
-        gamma[0] = 0;
+        // Set up the tridiagonal system for solving the second derivatives (b)
+        pp::vector D(n), Q(n-1), B(n); D[0] = 2; Q[0] = 1;
+        // Fill the diagonal (D), upper diagonal (Q), and right-hand side (B) of the system
+        for (int i = 0; i<n-2; i++) {D[i+1] = 2*h[i]/h[i+1]+2;} D[n-1] = 2;
 
-        for (int i = 1; i < n-1; ++i) {
-            alpha[i] = 3.0 * (p[i] - p[i - 1]);
-            beta[i] = 4.0 - zeta[i - 1];
-            zeta[i] = 1.0 / beta[i];
-            gamma[i] = (alpha[i] - gamma[i - 1]) / beta[i];
-        }
+        for (int i = 0; i<n-2; i++) {
+            Q[i+1]=h[i]/h[i+1];
+            B[i+1]=3*(p[i]+p[i+1]*h[i]/h[i+1]);
+            }
+        B[0] = 3*p[0]; B[n-1]=3*p[n-2];
 
-        beta[n-1] = 1;
-        gamma[n-1] = 0;
-        c[n-1] = 0;
-
-        // Back substitution
-        for (int i = n-2; i >= 0; --i) {
-            c[i] = (gamma[i] - zeta[i] * c[i+1]);
-        }
-
-        // Compute b and d coefficients
-        for (int i = 0; i < n-1; ++i) {
-            b[i] = p[i] - h[i] * (2 * c[i] + c[i+1]) / 3;
-            d[i] = (c[i+1] - c[i]) / (3 * h[i]);
+        // Solve the tridiagonal system using the Thomas algorithm
+        for(int i = 1; i<n; i++) {D[i] -=Q[i-1]/D[i-1];B[i]-=B[i-1]/D[i-1];}
+        //Backward substitution
+        b[n-1] = B[n-1]/D[n-1];
+        for (int i = n-2;i>=0;i--) {b[i]= (B[i]-Q[i]*b[i+1])/D[i];}
+        // Compute the coefficients c[i] and d[i] for the cubic spline
+        for (int i = 0; i <n-1;i++) {
+            c[i] = (-2*b[i]-b[i+1]+3*p[i])/h[i];
+            d[i] = (b[i]+b[i+1]-2*p[i])/h[i]/h[i];
         }
     }
 
