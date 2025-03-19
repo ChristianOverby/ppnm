@@ -152,7 +152,10 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET) $(OUTPUT) plot.harmoscil.svg plot.lotkaVolterra.svg log.plot.lotkaVolterra.svg.gpi \
 	log.plot.harmoscil.svg.gpi $(DAMPEDOSCILLATIONS) $(LOTKAVOLTERRAINTERPOLATED) $(LOTKAVOLTERRA) $(HARMOSCILLATOR) \
-	$(THREEBODYPROBLEM) plot.dampedOsc.svg plot.threeBodyProblem.svg
+	$(THREEBODYPROBLEM) $(ORBITS) plot.dampedOsc.svg plot.threeBodyProblem.svg plot.lotkaVolterraInterpolated.svg \
+	plot.orbits.svg log.plot.threeBodyProblem.svg.gpi log.plot.orbits.svg.gpi log.plot.lotkaVolterraInterpolated.svg.gpi \
+	log.plot.dampedOsc.svg.gpi
+
 
 
 # Phony targets: Targets that are not actual files but are used as commands
