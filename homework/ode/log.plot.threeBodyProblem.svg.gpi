@@ -1,0 +1,1 @@
+ set terminal svg size 800,600 background 'white'; set output "plot.threeBodyProblem.svg"; set grid; set xlabel 'x'; set ylabel 'y'; set size ratio -1; set title 'Three Body Problem'; plot "threeBodyProblem.csv" using 2:3 with lines title 'Planet 1', 	 "threeBodyProblem.csv" using 4:5 with lines title 'Planet 2', 	 "threeBodyProblem.csv" using 6:7 with lines title 'Planet 3', 

@@ -16,6 +16,7 @@ struct vector {
 	vector(vector&&)		=default;
 	vector& operator=(const vector&)=default;
 	vector& operator=(vector&&)	=default;
+	void push_back(const NUMBER n) {data.push_back(n);}
 	int size() const {return data.size();}
 	void resize(int n) {data.resize(n);}
 	NUMBER& operator[](int i) {return data[i];}

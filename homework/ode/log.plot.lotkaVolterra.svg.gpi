@@ -1,0 +1,1 @@
+ set terminal svg size 800,600 background 'white'; set output "plot.lotkaVolterra.svg"; set grid; set xlabel 't'; set ylabel 'size'; set title 'lotka volterra equations'; plot "lotkaVolterra.csv" using 1:2 with linespoints title 'x', 	 "lotkaVolterra.csv" using 1:3 with linespoints title 'y'; 

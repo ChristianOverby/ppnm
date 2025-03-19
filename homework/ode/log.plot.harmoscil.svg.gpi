@@ -1,0 +1,1 @@
+ set terminal svg size 800,600 background 'white'; set output "plot.harmoscil.svg"; set grid; set xlabel 'x'; set ylabel 'y'; set title 'Harm oscilator'; plot "harmosc.csv" using 1:2 with linespoints title 'y = cos(x)', 	 "harmosc.csv" using 1:3 with linespoints title 'dy = -sin(x)'; 
