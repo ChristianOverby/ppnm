@@ -2,6 +2,7 @@
 #include "tests.hpp"
 #include "QRGS.hpp"
 #include <string>
+#include <fstream>
 #include <regex>
 #include "../includes/matrix.hpp"
 
@@ -56,6 +57,62 @@ int main(int argc, char* arg[])
                     }
                 }
         }
+        if(str == "--file" || str == "-f") {
+            if (i+1 < argc) {
+               input = arg[i+1];
+               // Open the file
+                std::ifstream file(input);
+                if (!file.is_open()) {
+                    std::cerr << "Could not open " << input << std::endl;
+                    return 1;
+                }
+                std::cout << input << std::endl;
+                // Read the file line by line
+                std::vector<pp::vector> data;
+                std::string line;
+                size_t num_columns = 0;
+
+                while (std::getline(file, line)) {
+                    std::istringstream iss(line);
+                    pp::vector row;
+                    double value;
+
+                    // Split the line into values
+                    while (iss >> value) {
+                        row.push_back(value);
+                    }
+
+                    // Determine the number of columns from the first line
+                    if (num_columns == 0) {
+                        num_columns = row.size();
+                    }
+
+                    // Check if the row has the correct number of columns
+                    if (row.size() != num_columns) {
+                        std::cerr << "Error: Inconsistent number of columns in " << input << std::endl;
+                        return 1;
+                    }
+
+                    // Store the row in the data matrix
+                    data.push_back(pp::vector(row));
+                }
+                // Determine the number of rows and columns
+                size_t num_rows = data.size();
+
+                // Create a matrix and populate it
+                pp::matrix mat(num_rows, num_columns);
+                for (size_t i = 0; i < num_rows; ++i) {
+                    for (size_t j = 0; j < num_columns; ++j) {
+                        mat.set(i, j, data[i][j]);
+                    }
+                }
+
+                std::cout << mat << std::endl;
+                pp::testOnRealMatrix(mat);
+                file.close();
+            }
+        }
+
     }
 
     

@@ -18,5 +18,3 @@ Approx equal: true
 
 sin(i*pi) = (0,11.5487)	Expected value = (0,11.5487)
 Approx equal: true
-
-Extra cmath sinh and cosh exercise skipped

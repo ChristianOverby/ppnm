@@ -1,6 +1,7 @@
 #ifndef TESTS_HF
 #define TESTS_HF
 
+#include "../includes/matrix.hpp"
 
 namespace pp {
 
@@ -11,6 +12,8 @@ namespace pp {
     void testQRGSinverse(const int& repetitions, const bool& printOut = false);
 
     void testOperationsCount(const int& repetitions, const bool& printOut = false);
+
+    void testOnRealMatrix(const pp::matrix& mat);
 }
 
 

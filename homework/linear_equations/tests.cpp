@@ -128,5 +128,44 @@ void testQRGSinverse(const int &repetitions, const bool& printOut) {
   std::cout << "testQRGSinverse passed succesufully" << std::endl; 
 }
 
+void testOnRealMatrix(const pp::matrix& mat)
+{
+  pp::QRGS matrixQRdecomposed(mat);
+    pp::matrix Q = matrixQRdecomposed.getQ();
+
+    // Q^T * Q
+    pp::matrix QTQ = Q.transpose() * Q;
+
+    pp::log(true,"Q^T * Q \n",QTQ);
+    // Approximate all indices of the matrix with 0 or 1 and set it to 0 or 1 if true
+    for (int i = 0; i < QTQ.size1(); ++i) {
+        for (int j = 0; j < QTQ.size2(); ++j) {
+            if (pp::approx(QTQ[i, j], 0.0)) {
+                QTQ[i, j] = 0.0;
+            }
+            if (pp::approx(QTQ[i, j], 1.0)) {
+                QTQ[i, j] = 1.0;
+            }
+        }
+    }
+    pp::log(true,"Q^T * Q (Aprroximate 0) \n",QTQ);
+    assert(QTQ == pp::matrix::identity(QTQ.size2()) && "Q^T * Q != I");
+    // R upper triangular
+    pp::matrix R; R = matrixQRdecomposed.getR();
+    pp::log(true,"R \n", R);
+    pp::log(true,"R is upper triangular?    ", (R.upperTriangular() ? "True" : "False"), "\n");
+    assert(R.upperTriangular() && "R isn't upper triangular");
+
+    //QR = A
+    pp::matrix QmultR = Q*R;
+    pp::log(true,"Q*R = Q\nQ*R: \n", QmultR, "\nA: \n" , mat);
+    pp::log(true, "Q*R = A? (Aprroximate)   ", (QmultR == mat ? "True" : "False"));
+    //assert(QmultR == matrix && "Q*R != A (approximately)");
+
+
+    pp::log(true, "---------------------------------------");
+}
+
+
 
 } // namespace pp

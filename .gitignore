@@ -31,5 +31,7 @@
 *.out
 *.app
 
-.vscode/
-.Identifier
+*.vscode/
+*.Identifier
+*.gpi
+*.csv

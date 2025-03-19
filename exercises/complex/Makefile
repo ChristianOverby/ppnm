@@ -22,7 +22,7 @@ LDLIBS += -lm -lstdc++
 TARGET = main
 
 # Source files: List of all source files to be compiled (only main.cpp here)
-SRCS = main.cpp includes/function.cpp
+SRCS = main.cpp
 
 # Output file: The name of the file where the output will be redirected
 OUTPUT = Output.txt
