@@ -34,6 +34,7 @@ LOTKAVOLTERRAINTERPOLATED = lotkaVolterraInterpolated.csv
 DAMPEDOSCILLATIONS = dampedOscillations.csv
 ORBITS = orbits.csv
 THREEBODYPROBLEM = threeBodyProblem.csv
+THREEBODYPROBLEMBROEK = threeBodyProblemBroek.csv
 # Object files: List of object files to be generated from the source files
 # This replaces the .cpp extension with .o for each source file
 # $(patsubst pattern, replacement, text)`: This Make function performs pattern substitution.
@@ -122,7 +123,6 @@ plot.threeBodyProblem.svg : $(THREEBODYPROBLEM)
 		 \"$<\" using 4:5 with lines title 'Planet 2', \
 		 \"$<\" using 6:7 with lines title 'Planet 3', \
 	" | tee log.$@.gpi | gnuplot
-
 
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)

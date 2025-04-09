@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
-#include <regex>
 #include "odeint.hpp"
 
 // Vector that represents the system of ODEs (Harmonic oscillator)
@@ -253,9 +252,7 @@ int main() {
              << tmp[10] << " " << tmp[11] << "\n";
     }
 
-
-
-
+    file.close();
 
     return 0;
 }

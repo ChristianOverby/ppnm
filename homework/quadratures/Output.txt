@@ -1,0 +1,107 @@
+Integral of ∫_0^1 dx √(x) = 0.666681 Expected value: 2/3 Absoulte error: 1.42662e-05
+Integral of ∫_0^1 dx 1/√(x) = 2 Expected value: 2 Absoulte error: 2.61204e-06
+Integral of ∫_0^1 dx 4√(1-x²) = 3.1416 Expected value: π Absoulte error: 4.85411e-06
+Integral of ∫_0^1 dx ln(x)/√(x) = -4 Expected value: -4 Absoulte error: 1.65101e-06
+---------------------------------------------------------------------------------
+The error function implemented via its integral representation is plotted as plot.erf.svg
+The accuracy comparison is plotted as plot.diff.svg
+---------------------------------------------------------------------------------
+Some comparions between no transformation and Clenshaw–Curtis variable transformation 
+Test: Inverted Square root ∫_0^1 dx 1/√(x)
+  Result     = 2.0000000000
+  Expected   = 2.0000000000
+  Abs Error  = 0.0000000000
+  Est. Error = 0.0000001626
+  Given ε    = 0.0000000100
+  Evaluations: 801228
+  Abs. Error < ε error
+
+
+Test: Clenshaw–Curtis variable transformation integration of Inverted Square root ∫_0^1 dx 1/√(x)
+  Result     = 2.0000000000
+  Expected   = 2.0000000000
+  Abs Error  = 0.0000000000
+  Est. Error = 0.0000001396
+  Given ε    = 0.0000000100
+  Evaluations: 2060
+  Abs. Error < ε error
+
+
+Test: ln over square root ∫x ln(x)/√(x) 
+  Result     = -4.0000000000
+  Expected   = -4.0000000000
+  Abs Error  = 0.0000000000
+  Est. Error = 0.0000002180
+  Given ε    = 0.0000000100
+  Evaluations: 2896568
+  Abs. Error < ε error
+
+
+Test: Clenshaw–Curtis variable tran_0^1 dsformation of ln over square root ∫_0^1 dx ln(x)/√(x) 
+  Result     = -3.9999990873
+  Expected   = -4.0000000000
+  Abs Error  = 0.0000009127
+  Est. Error = 0.0003020230
+  Given ε    = 0.0000000100
+  Evaluations: 388
+  Abs. Error > ε error
+
+---------------------------------------------------------------------------------
+Testing some infinite integrals
+Test: Gaussian ∫_inf^inf exp(-x^2)
+  Result     = 1.7724536261
+  Expected   = 1.7724538509
+  Abs Error  = 0.0000002248
+  Est. Error = 0.0000001852
+  Given ε    = 0.0000000100
+  Evaluations: 7080
+  Abs. Error > ε error
+
+Test: Exponential decay ∫_inf^1 exp(-x)
+  Result     = 0.9999999998
+  Expected   = 1.0000000000
+  Abs Error  = 0.0000000002
+  Est. Error = 0.0000001162
+  Given ε    = 0.0000000100
+  Evaluations: 2812
+  Abs. Error < ε error
+
+
+Test: Inverse square ∫_inf^inf 1 / (1 + x^2)
+  Result     = 3.1415926532
+  Expected   = 3.1415926536
+  Abs Error  = 0.0000000004
+  Est. Error = 0.0000001996
+  Given ε    = 0.0000000100
+  Evaluations: 5256
+  Abs. Error < ε error
+
+
+Test: Inverse square ∫_inf^0 1 / (1 + x^2)
+  Result     = 1.5707963268
+  Expected   = 1.5707963268
+  Abs Error  = 0.0000000000
+  Est. Error = 0.0000000997
+  Given ε    = 0.0000000100
+  Evaluations: 2480
+  Abs. Error < ε error
+
+
+Test: Lorentzian ∫_-inf^inf 1 / (x^2 + 0.01)
+  Result     = 31.4159265355
+  Expected   = 31.4159265359
+  Abs Error  = 0.0000000004
+  Est. Error = 0.0000004725
+  Given ε    = 0.0000000100
+  Evaluations: 26512
+  Abs. Error < ε error
+
+
+---------------------------------------------------------------------------------
+Pyhton comparison
+integration of ∫_0^1 dx 1/√(x) = 1.9999999999999984    err: 5.773159728050814e-15      evals: 231
+integration of ∫_0^1 dx ln(x)/√(x) = -4.000000000000085    err: 1.354472090042691e-13      evals: 315
+integration of Inverse square ∫_inf^inf 1 / (1 + x^2) = 3.141592653589793    err: 5.155583041103855e-10      evals: 90
+integration of Lorentzian ∫_-inf^inf 1 / (x^2 + 0.01) = 31.415926535897928    err: 2.0941228099648993e-07      evals: 210
+Probably using CC on the infinite function conversion would help reduce the number evals 
+However the scipy implementation is much more efficient than mine :(
