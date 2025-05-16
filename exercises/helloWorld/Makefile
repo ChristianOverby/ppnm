@@ -28,7 +28,7 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 
 # Default target: The target that will be built when you run `make` without arguments
 # It depends on the $(TARGET) rule, which will build the executable
-all: $(TARGET)
+all: $(TARGET) output
 
 # Rule to link object files and create the final executable
 # $(TARGET): The name of the executable (main)
@@ -49,14 +49,14 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 output : $(TARGET)
-	./$(TARGET) > out.txt
+	./$(TARGET) > Output.txt
 
 # Clean target: Removes all generated files (object files and the executable)
 # rm -f: Forcefully remove files without prompting for confirmation
 # $(OBJS): Removes all object files
 # $(TARGET): Removes the final executable
 clean:
-	rm -f $(OBJS) $(TARGET) out.txt
+	rm -f $(OBJS) $(TARGET) Output.txt
 
 # Phony targets: Targets that are not actual files but are used as commands
 # all: The default target to build the executable
