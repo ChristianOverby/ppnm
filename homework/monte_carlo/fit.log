@@ -1,0 +1,270 @@
+
+
+*******************************************************************************
+Fri Apr 11 12:55:30 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 2.4544161120e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 2.2762928212e-02  -1.24e-01  1.22e-04    1.218163e+00
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0227629
+rel. change during last iteration : -1.24207e-06
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00956124
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.14174e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.21816          +/- 0.04942      (4.057%)
+
+
+*******************************************************************************
+Fri Apr 11 12:56:01 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 3.9716899821e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 2.4422013273e-02  -9.94e-01  1.22e-04    1.639283e+00
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.024422
+rel. change during last iteration : -9.94071e-06
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00990355
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.80804e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.63928          +/- 0.05119      (3.123%)
+
+
+*******************************************************************************
+Fri Apr 11 12:57:13 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 3.0425401961e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 2.7182158637e-02  -1.89e-01  1.22e-04    1.294381e+00
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0271822
+rel. change during last iteration : -1.89386e-06
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0104482
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000109165
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.29438          +/- 0.05401      (4.173%)
+
+
+*******************************************************************************
+Fri Apr 11 12:57:27 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 4.5181140327e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 4.0137798009e-02  -1.99e-01  1.22e-04    1.367096e+00
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0401378
+rel. change during last iteration : -1.99442e-06
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0126963
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000161196
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.3671           +/- 0.06563      (4.801%)
+
+
+*******************************************************************************
+Fri Apr 11 12:59:08 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 2.3346447614e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 2.3118344935e-02  -1.57e-02  1.22e-04    9.219298e-01
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0231183
+rel. change during last iteration : -1.56612e-07
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0096356
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.28448e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.92193          +/- 0.04981      (5.403%)
+
+
+*******************************************************************************
+Fri Apr 11 12:59:19 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 1.6250392703e-01   0.00e+00  1.22e-02    1.000000e+00
+   3 8.3864770314e-02  -2.38e-09  1.22e-05    2.449571e+00
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 0.0838648
+rel. change during last iteration : -2.38289e-14
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0183523
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000336806
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.44957          +/- 0.09487      (3.873%)
+
+
+*******************************************************************************
+Fri Apr 11 12:59:23 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 3.4123490043e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 3.3542116603e-02  -2.75e-02  1.22e-04    8.753629e-01
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0335421
+rel. change during last iteration : -2.75117e-07
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0116063
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000134707
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.875363         +/- 0.06         (6.854%)
+
+
+*******************************************************************************
+Fri Apr 11 12:59:28 2025
+
+
+FIT:    data read from "plainmc_unit_cirle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 5.7004587898e-02   0.00e+00  1.22e-02    1.000000e+00
+   2 3.5966640210e-02  -9.28e-01  1.22e-04    1.749759e+00
+
+After 2 iterations the fit converged.
+final sum of squares of residuals : 0.0359666
+rel. change during last iteration : -9.28445e-06
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0120185
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000144444
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.74976          +/- 0.06213      (3.551%)
+
+
+*******************************************************************************
+Fri Apr 11 13:00:52 2025
+
+
+FIT:    data read from "plainmc_triangle.csv" using 1:4
+        format = x:z
+        #datapoints = 250
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / sqrt(x)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 1.5447029287e-02   0.00e+00  1.22e-02    1.000000e+00
+   3 2.5989946137e-03  -1.25e-08  1.22e-05    4.140801e-01
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 0.00259899
+rel. change during last iteration : -1.25482e-13
+
+degrees of freedom    (FIT_NDF)                        : 249
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00323075
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.04377e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.41408          +/- 0.0167       (4.033%)

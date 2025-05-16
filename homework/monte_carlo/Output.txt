@@ -1,0 +1,48 @@
+Testing some relevant functions
+Test: test plainmc circle integration
+  Result     = 3.1292000000
+  Expected   = 3.1415926536
+  Abs Error  = 0.0123926536
+  Est. Error = 0.0073822860
+Test: test quacimc circle integration
+  Result     = 3.1423200000
+  Expected   = 3.1415926536
+  Abs Error  = 0.0007273464
+  Est. Error = 0.0000800000
+Test: test stratamc circle integration
+  Result     = 3.1412810379
+  Expected   = 3.1415926536
+  Abs Error  = 0.0003116157
+  Est. Error = 0.0026984022
+---------------------------------------------------------------------------------
+Test: test plainmc triangle integration
+  Result     = 0.5006000000
+  Expected   = 0.5000000000
+  Abs Error  = 0.0006000000
+  Est. Error = 0.0022360664
+Test: test quasinmc triangle integration
+  Result     = 0.4997300000
+  Expected   = 0.5000000000
+  Abs Error  = 0.0002700000
+  Est. Error = 0.0003000000
+Test: test stratamc triangle integration
+  Result     = 0.4989625893
+  Expected   = 0.5000000000
+  Abs Error  = 0.0010374107
+  Est. Error = 0.0004203766
+---------------------------------------------------------------------------------
+Test: test plainmc Watson integration
+  Result     = 1.4292562978
+  Expected   = 1.3932039297
+  Abs Error  = 0.0360523681
+  Est. Error = 0.9156003971
+Test: test quasimc Watson integration
+  Result     = 1.3800915529
+  Expected   = 1.3932039297
+  Abs Error  = 0.0131123768
+  Est. Error = 0.0031011669
+Test: test stratamc Watson integration
+  Result     = 1.3715061228
+  Expected   = 1.3932039297
+  Abs Error  = 0.0216978069
+  Est. Error = 0.1715276116
