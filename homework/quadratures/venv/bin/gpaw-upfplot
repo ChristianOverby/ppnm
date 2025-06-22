@@ -1,0 +1,5 @@
+#!/home/overby/ppnm/homework/quadratures/venv/bin/python3
+
+from gpaw.upf import main_plot
+
+main_plot()

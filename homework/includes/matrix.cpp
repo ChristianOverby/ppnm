@@ -105,6 +105,9 @@ vector operator-(const vector& a, const vector& b){
 	r-=b;
 	return r; }
 
+vector operator-(const vector& a){
+	vector r=a*(-1);
+	return r; }
 
 
 void matrix::resize(int n, int m){
@@ -301,10 +304,12 @@ std::ostream& operator<<(std::ostream& os, const matrix& mat) {
 std::ostream& operator<<(std::ostream& os, const vector& obj)
 {
 	std::ostringstream buffer;
-	for (int i = 0; i < obj.size(); i++) {
+	int length = obj.size();
+	for (int i = 0; i < length - 1; i++) {
 		buffer << std::setprecision(4) << obj[i] << " ";
 	}
-	buffer << "\n";
+	buffer << std::setprecision(4) << obj[length-1];
+	//buffer << "\n";
 	return os << buffer.str();
 }
 

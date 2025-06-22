@@ -1,0 +1,33 @@
+Part 1: Minimizing rosenbrock and himmelblau
+Guess: 0 0
+Found minima: 0.999953, 0.999905
+iterations: 13
+Guess: 2 2
+Found minima: 0.999997, 0.999993
+iterations: 15
+Guess: -2 -2
+Found minima: 0.999981, 0.999962
+iterations: 25
+Guess: 2 -2
+Found minima: 0.999994, 0.999987
+iterations: 15
+Himmelblau function minimisation: 
+Expected global minima at (3,2), (-3.77931, -3.28319), (-2.80512, 3.13131), (3.58443, -1.84813)
+Guess: -2 -2
+Found minima: 3, 2
+iterations: 5
+Guess: -4 -3
+Found minima: -3.77931, -3.28319
+iterations: 3
+Guess: -4 2
+Found minima: -2.80512, 3.13131
+iterations: 5
+Guess: 3 -3
+Found minima: 3.58443, -1.84813
+iterations: 5
+
+Part 2: Minimizing the Breit-Wigner function
+Guess: 125 3 10
+Found parameters: 125.972, 2.08614, 9.87526
+iterations: 7
+125.972

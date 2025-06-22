@@ -1,0 +1,25 @@
+Part 1: 
+
+Testing 1D function 5√x + 10
+Guess: 0, root at: 4
+Guess: 2, root at: 4
+Guess: 4, root at: 4
+Guess: 6, root at: 4
+Testing 2D linear equation x + y = 5, 2x - y = 10
+Guess: 0 0, root at: 5 0
+Guess: -2 -2, root at: 5 -8.882e-16
+Guess: 2 2, root at: 5 -4.441e-16
+Guess: -2 2, root at: 5 -4.441e-16
+Testing Rosenkbrock roots
+Guess: 0 0, root at: 1 1
+Testing Rosenkbrock roots
+Guess: -2 -2, root at: 1 1
+Testing Rosenkbrock roots
+Guess: 2 2, root at: 1 1
+Testing Rosenkbrock roots
+Guess: -2 2, root at: 1 1
+
+Part 2: 
+
+Lowest energy E0(rmax=8) = -0.4999
+Note that the convergence of eps and acc is bounded by each other in this case 0.01

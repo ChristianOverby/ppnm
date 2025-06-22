@@ -87,7 +87,8 @@ namespace pp
             if(x>=b) {std::pair<pp::vector, std::vector<pp::vector>> bar(xlist,ylist);return bar;} /* job done */
             if(x+h>b) h=b-x;               /* last step should end at b */
             std::pair<pp::vector, pp::vector> yhdy = stepper5(f,x,y,h);
-            double tol = (atol+rtol*yhdy.first.norm()) * std::sqrt(h/(b-a));
+            //double tol = (atol+rtol*yhdy.first.norm()) * std::sqrt(h/(b-a));
+            double tol = atol + rtol * yhdy.first.norm();  // Replaced with stanrad tolerance calculations.
             double err = yhdy.second.norm();
             if(err<=tol){ // accept step
             x+=h; y=yhdy.first;

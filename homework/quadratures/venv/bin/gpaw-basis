@@ -1,0 +1,5 @@
+#!/home/overby/ppnm/homework/quadratures/venv/bin/python3
+
+from gpaw.atom.gpaw_basis import main
+
+main()

@@ -38,6 +38,7 @@ struct vector {
 
 vector operator+(const vector&, const vector&);
 vector operator-(const vector&, const vector&);
+vector operator-(const vector&);
 vector operator*(const vector&, NUMBER);
 vector operator*(NUMBER, const vector&);
 vector operator/(const vector&, NUMBER);

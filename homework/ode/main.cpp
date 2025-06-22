@@ -254,5 +254,7 @@ int main() {
 
     file.close();
 
+    std::cout << "See plots" << std::endl;
+
     return 0;
 }
