@@ -1,0 +1,4 @@
+Test
+Training newtork on 5 hidden neurons over a sammpling interval -1 to 1 with 30 datapoints. Function to approximate is f(x) = cos(5*x-1)*e^(-x^2)
+Training succesful
+See function approximation in plot.ann.svg

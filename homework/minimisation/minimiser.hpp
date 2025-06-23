@@ -12,6 +12,7 @@ namespace pp {
     
     std::pair<pp::vector, double> newton(std::function<double(const pp::vector&)> f ,pp::vector x,double acc=1e-3);
     
+    pp::vector quasi_newton(std::function<double(const vector&)> f, vector x, double tol, bool useSR1);
     
 
 }
