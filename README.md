@@ -1,3 +1,28 @@
-# Practical programming and numercial methods
+## Practical programming and numercial methods
 
-Backup of drive
+Point distribution:
+
+|Homework   | A  | B  | C  | sum  |
+|---|---|---|---|---|
+| QR  | 6  | 3  | 1  | 10  |
+| EVD  | 6  | 3  | 1  | 10  |
+|  OLS | 6  |  3 | 1  | 10  |
+| Spline  |  6 | 3  | 1  | 10  |
+|  ODE |  6 |  3 | 1  | 10  |
+| Quad  |  6 |  3 | 1  | 10  |
+|  MC |  6 |  3 |  1 | 10  |
+| Root  | 6  | 3  |  0 | 9  |
+| Min  | 6  |  3 |  0 |  9 |
+|  ANN | 6  |  3 |  0 |  9 |
+| Total  |   |   |   |  97 |
+
+## Structure of this course
+
+# Exercises
+The exercises in the course are here
+
+# Homework
+The homeworks in the course are here
+
+# Exam
+The exam from this course is here
