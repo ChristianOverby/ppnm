@@ -58,7 +58,7 @@ void testQRGSdecomp(const int& repetitions, const bool& printOut){
 
     pp::log(printOut, "---------------------------------------");
   }
-  std::cout << "testQRGSsolve passed succesufully" << std::endl; 
+  std::cout << "testQRGSdecomp passed succesufully" << std::endl; 
 }
 
 void testQRGSsolve(const int& repetitions, const bool& printOut) {

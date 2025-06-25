@@ -36,7 +36,7 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 
 # Default target: The target that will be built when you run `make` without arguments
 # It depends on the $(TARGET) rule, which will build the executable
-all: $(TARGET) output
+all: $(TARGET) output plot.benchmark.svg
 
 plot.benchmark.svg : $(PLOT_DATA_OUTPUT)
 	@echo " \

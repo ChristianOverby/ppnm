@@ -30,7 +30,9 @@ int main(int argc, char* arg[])
             std::cout << "\nDoing one testQRGSinverse verbose test:" << std::endl;
             pp::testQRGSinverse(1, true);
             std::cout << "\nTesting inverse on 2000 0-20 x 0-20 matricies" << std::endl;
-            pp::testQRGSsolve(2000);
+            pp::testQRGSinverse(2000);
+            std::cout << "---------------------------------------" << std::endl;
+            std::cout << "Time count for QR-decomposition can be seen in plot.benchmark.svg" << std::endl;
         }
         if(str == "--sizeSquare" || str == "-ssq") {
             // no error checking for more numbers. Only checks the first two inpiuts
@@ -70,7 +72,7 @@ int main(int argc, char* arg[])
                 // Read the file line by line
                 std::vector<pp::vector> data;
                 std::string line;
-                size_t num_columns = 0;
+                int num_columns = 0;
 
                 while (std::getline(file, line)) {
                     std::istringstream iss(line);
@@ -97,12 +99,12 @@ int main(int argc, char* arg[])
                     data.push_back(pp::vector(row));
                 }
                 // Determine the number of rows and columns
-                size_t num_rows = data.size();
+                int num_rows = data.size();
 
                 // Create a matrix and populate it
                 pp::matrix mat(num_rows, num_columns);
-                for (size_t i = 0; i < num_rows; ++i) {
-                    for (size_t j = 0; j < num_columns; ++j) {
+                for (int i = 0; i < num_rows; ++i) {
+                    for (int j = 0; j < num_columns; ++j) {
                         mat.set(i, j, data[i][j]);
                     }
                 }
