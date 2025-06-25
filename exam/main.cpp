@@ -14,6 +14,7 @@ int main(int argc, char* arg[]) {
         str = arg[i];
         if(str == "--runUnitTest" || str == "-rut") {
             std::cout << "---------------------------------------" << std::endl;
+            std::cout << "Exam project index 15 pr. spreadsheet. Christian Overby" << std::endl;
             std::cout << "Pivoting LU decomposition testing the implemented functions:" << std::endl;
             std::cout << "---------------------------------------\n" << std::endl;
             std::cout << "\nDoing one testLUdecomp verbose test:" << std::endl;
