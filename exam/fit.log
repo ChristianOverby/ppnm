@@ -1,0 +1,60 @@
+
+
+*******************************************************************************
+Wed Jun 25 20:33:10 2025
+
+
+FIT:    data read from 'benchmarkQR.csv' using 1:2
+        format = x:z
+        #datapoints = 61
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * x**3
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a            
+   0 1.2361538073e+18   0.00e+00  1.42e+08    1.000000e+00
+   5 1.5906815866e-02  -2.18e-11  1.42e+03    2.873622e-09
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0159068
+rel. change during last iteration : -2.18111e-16
+
+degrees of freedom    (FIT_NDF)                        : 60
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0162823
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000265114
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.87362e-09      +/- 1.464e-11    (0.5096%)
+
+
+*******************************************************************************
+Wed Jun 25 20:33:10 2025
+
+
+FIT:    data read from 'benchmarkLU.csv' using 1:2
+        format = x:z
+        #datapoints = 61
+        residuals are weighted equally (unit weight)
+
+function used for fitting: h(x)
+	h(x) = b * x**3
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   b            
+   0 1.2361538120e+18   0.00e+00  1.42e+08    1.000000e+00
+   5 8.0213469939e-02   0.00e+00  1.42e+05    9.831665e-10
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.0802135
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 60
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0365635
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00133689
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+b               = 9.83167e-10      +/- 3.289e-11    (3.345%)
