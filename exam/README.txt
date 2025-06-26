@@ -54,6 +54,9 @@ The main file can be run with arguments
     This generates a n x n square matrix and perfoms QR decomposition on it. This is done m number of times
 -ssqLU n,m or --sizeSquareLU n,m
     This generates a n x n square matrix and perfoms LU decomposition on it. This is done m number of times
+--file FILENAME or -f FILENAME
+    Test LU decomp on a custom matrix defined in a .csv style way with " " between row indicies and \n for coloumns
+    (example matrix is provided as matrix.csv)
 
 
 This algorithm fails quietly, which is not very user-friendly, and this could definitely be improved.

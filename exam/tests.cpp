@@ -113,5 +113,32 @@ namespace pp
   std::cout << "testQRGSinverse passed succesufully" << std::endl; 
 }
 
+void testOnRealMatrix(const pp::matrix& mat)
+{
+    pp::LUF matrixQRdecomposed(mat);
+
+    // U upper triangular
+    pp::matrix U; U = matrixQRdecomposed.getU();
+    pp::log(true,"U \n", U);
+    pp::log(true,"U is upper triangular?    ", (U.upperTriangular() ? "True" : "False"), "\n");
+    assert(U.upperTriangular() && "U isn't upper triangular");
+
+    // L lower triangular
+    pp::matrix L; L = matrixQRdecomposed.getL();
+    pp::log(true,"L \n", L);
+    pp::log(true,"L is lower triangular?    ", (L.lowerTriangular() ? "True" : "False"), "\n");
+    assert(U.upperTriangular() && "L isn't lower triangular");
+
+    //LU = A
+    pp::matrix LmultU = (L*U);
+    pp::matrix A_p = matrixQRdecomposed.getApivoted();
+    std::cout <<"L*U = A_pivoted\nL*U: \n" << LmultU << "\nA_pivoted: \n" << A_p << std::endl;
+    std::cout << "L*U = A? (Aprroximate)   " << (LmultU == A_p? "True" : "False") << std::endl;
+    //assert(QmultR == matrix && "Q*R != A (approximately)");
+
+
+    pp::log(true, "---------------------------------------");
+}
+
 
 }
