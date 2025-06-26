@@ -1,7 +1,7 @@
 nthreads=1 nterms= 500000000
 nthreads=1 nterms= 500000000
-Real: 0:00.58
-User: 0.53
+Real: 0:01.22
+User: 1.20
 Sys: 0.00 
 
 Timing with N ∈ {1,2,3,4,5,6,7,8,9,10,11,12}
@@ -10,8 +10,8 @@ nthreads=1 nterms= 500000000
 sum=20.6073
 nthreads=1 nterms= 500000000
 Sum (with race condition):0
-Real: 0:00.58
-User: 0.53
+Real: 0:01.21
+User: 1.20
 Sys: 0.00 
 
 Running with 2 threads...
@@ -19,89 +19,89 @@ nthreads=2 nterms= 500000000
 sum=20.6073
 nthreads=2 nterms= 500000000
 Sum (with race condition):18.9142
-Real: 0:00.58
-User: 0.78
-Sys: 0.00 
+Real: 0:01.21
+User: 1.79
+Sys: 0.01 
 
 Running with 3 threads...
 nthreads=3 nterms= 500000000
 sum=20.6073
 nthreads=3 nterms= 500000000
 Sum (with race condition):18.5087
-Real: 0:00.39
-User: 0.86
+Real: 0:00.81
+User: 2.01
 Sys: 0.00 
 
 Running with 4 threads...
 nthreads=4 nterms= 500000000
 sum=20.6073
 nthreads=4 nterms= 500000000
-Sum (with race condition):18.221
-Real: 0:00.29
-User: 0.90
-Sys: 0.00 
+Sum (with race condition):0.693147
+Real: 0:00.61
+User: 2.10
+Sys: 0.01 
 
 Running with 5 threads...
 nthreads=5 nterms= 500000000
 sum=20.6073
 nthreads=5 nterms= 500000000
-Sum (with race condition):17.9979
-Real: 0:00.24
-User: 0.95
+Sum (with race condition):0.693147
+Real: 0:00.75
+User: 3.10
 Sys: 0.00 
 
 Running with 6 threads...
 nthreads=6 nterms= 500000000
 sum=20.6073
 nthreads=6 nterms= 500000000
-Sum (with race condition):0.223144
-Real: 0:00.29
-User: 1.14
+Sum (with race condition):0.287682
+Real: 0:00.67
+User: 3.07
 Sys: 0.00 
 
 Running with 7 threads...
 nthreads=7 nterms= 500000000
 sum=20.6073
 nthreads=7 nterms= 500000000
-Sum (with race condition):0.405465
-Real: 0:00.33
-User: 1.43
+Sum (with race condition):0.182322
+Real: 0:00.67
+User: 3.30
 Sys: 0.00 
 
 Running with 8 threads...
 nthreads=8 nterms= 500000000
 sum=20.6073
 nthreads=8 nterms= 500000000
-Sum (with race condition):0.154151
-Real: 0:00.29
-User: 1.52
+Sum (with race condition):0.182322
+Real: 0:00.59
+User: 3.92
 Sys: 0.00 
 
 Running with 9 threads...
 nthreads=9 nterms= 500000000
 sum=20.6073
 nthreads=9 nterms= 500000000
-Sum (with race condition):17.4101
-Real: 0:00.26
-User: 1.63
+Sum (with race condition):0.182322
+Real: 0:00.53
+User: 3.88
 Sys: 0.00 
 
 Running with 10 threads...
 nthreads=10 nterms= 500000000
 sum=20.6073
 nthreads=10 nterms= 500000000
-Sum (with race condition):0.117783
-Real: 0:00.24
-User: 1.71
+Sum (with race condition):0.154151
+Real: 0:00.47
+User: 3.91
 Sys: 0.00 
 
 Running with 11 threads...
 nthreads=11 nterms= 500000000
 sum=20.6073
 nthreads=11 nterms= 500000000
-Sum (with race condition):0.133531
-Real: 0:00.21
-User: 1.98
+Sum (with race condition):0.105361
+Real: 0:00.47
+User: 4.30
 Sys: 0.00 
 
 Running with 12 threads...
@@ -109,7 +109,7 @@ nthreads=12 nterms= 500000000
 sum=20.6073
 nthreads=12 nterms= 500000000
 Sum (with race condition):0.405465
-Real: 0:00.18
-User: 1.95
+Real: 0:00.44
+User: 4.54
 Sys: 0.00 
 

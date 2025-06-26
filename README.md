@@ -1,4 +1,4 @@
-## Practical programming and numercial methods
+# Practical programming and numercial methods
 
 Point distribution:
 
@@ -16,13 +16,13 @@ Point distribution:
 |  ANN | 6  |  3 |  0 |  9 |
 | Total  |   |   |   |  97 |
 
-## Structure of this course
+# Structure of this course
 
-# Exercises
+## Exercises
 The exercises in the course are here
 
-# Homework
+## Homework
 The homeworks in the course are here
 
-# Exam
+## Exam
 The exam from this course is here

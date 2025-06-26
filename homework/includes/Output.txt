@@ -80,22 +80,22 @@ H =
 25 98 
 21 34 
 
-Time taken to create 1e5 matrices: 0.039262 seconds
+Time taken to create 1e5 matrices: 0.092404 seconds
 H = 
 14 92
 42 81
 
-Time taken to create 1e5 vmatrices: 0.014542 seconds
+Time taken to create 1e5 vmatrices: 0.029972 seconds
 J = 
 58 63
 158 121
 
-Time taken to create 1e5 vmatrices and push_back them: 0.038588 seconds
+Time taken to create 1e5 vmatrices and push_back them: 0.088184 seconds
 J = 
 116 114 
 88 96 
 
-Time taken to create 1e5 matrices and push_back them: 0.10952 seconds
+Time taken to create 1e5 matrices and push_back them: 0.247289 seconds
 using vmatrix is slower so i will not implement any more to this class
 Convert B to identity matrix = 
 1 0 
@@ -158,8 +158,7 @@ matrix =
 3 0 0 
 
 M = 
-1 2 3 
-
+1 2 3
 transposed matrix has vector M inserted at col 3: 
 1 0 1 
 0 2 2 

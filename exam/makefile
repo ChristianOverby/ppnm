@@ -65,7 +65,7 @@ plot.benchmark.svg : $(PLOT_DATA_OUTPUT_QR)  $(PLOT_DATA_OUTPUT_LU)
 		set output \"$@\"; \
 		set xlabel 'Matrix Size N'; \
 		set ylabel 'Time (seconds)'; \
-		set title 'QR and LU Factorization Complexity'; \
+		set title 'QR and LU decomposition Complexity'; \
 		set grid; \
 		set key left top; \
 		set zeroaxis; \

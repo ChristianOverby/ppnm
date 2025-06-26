@@ -170,7 +170,7 @@ matrix matrix::rndMatrix(int n, int m, NUMBER min, NUMBER max)
 	matrix tmp(n,m);
     for (int j = 0; j < n; ++j) {
         for (int i = 0; i < m; ++i) {
-			int val = dist(gen);
+			double val = dist(gen);
             tmp[j, i] = val; // Assign a random value to each element
         }
     }
