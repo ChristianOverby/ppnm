@@ -26,3 +26,5 @@ The homeworks in the course are here
 
 ## Exam
 The exam from this course is here
+
+Note that the projects are written in c++ however a python venv is included in the repository to compare the time taken for some equivalent python script.
